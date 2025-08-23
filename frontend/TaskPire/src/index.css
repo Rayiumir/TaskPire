@@ -1,1 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
 @import "tailwindcss";
+
+@theme {
+    --font-display: "Vazir";
+    --breakpoint-3x1: 1920px;
+    --color-primary: #1368EC;
+}
+
+@layer base{
+    html{
+        font-family: var(--font-display);
+    }
+
+    body{
+        background-color: #e8e8e8;
+        overflow-x: hidden;
+    }
+}
