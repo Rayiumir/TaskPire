@@ -1,7 +1,6 @@
-import jwt from "jsonwebtoken";
-
+const {sign} = require("jsonwebtoken");
 const generateToken = (userId) => {
-    return jwt.sign({id: userId}, process.env.JWT_SECRET, {expiresIn: '1d'});
+    return sign({id: userId}, process.env.JWT_SECRET, {expiresIn: '1d'});
 }
 
 const loginUser = async (req, res) => {};
