@@ -21,7 +21,7 @@ const protect = async (req, res, next) => {
 
 // Middleware for Admin Access
 
-const adminLogin = (req, res, next) => {
+const adminAccess = (req, res, next) => {
     if (req.user && req.user.role === "admin") {
         next();
     } else {
@@ -29,4 +29,4 @@ const adminLogin = (req, res, next) => {
     }
 };
 
-module.exports = {protect, adminLogin};
+module.exports = {protect, adminAccess};
