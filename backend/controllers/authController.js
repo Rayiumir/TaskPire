@@ -2,8 +2,37 @@ const {sign} = require("jsonwebtoken");
 const generateToken = (userId) => {
     return sign({id: userId}, process.env.JWT_SECRET, {expiresIn: '1d'});
 }
+const User = require('../models/User');
+const bcrypt = require('bcryptjs');
 
-const loginUser = async (req, res) => {};
+const loginUser = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(401).json({message: "Invalid email or password"});
+        }
+
+        // Compare Password
+        const isMatch = await  bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({message: "Invalid password"});
+        }
+
+        // Return User Data with JWT
+        res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            profileImageURL: user.profileImageURL,
+            token: generateToken(user._id),
+        });
+
+    }catch (error) {
+        res.status(500).json({message: "Server error", error: error.message});
+    }
+};
 const registerUser = async (req, res) => {
     try {
         const { name, email, password, profileImageURL, adminInviteToken } = req.body;
