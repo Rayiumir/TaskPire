@@ -2,14 +2,14 @@
 @import "tailwindcss";
 
 @theme {
-    --font-display: "Vazir";
+    --font-display: "Vazirmatn";
     --breakpoint-3x1: 1920px;
     --color-primary: #1368EC;
 }
 
 @layer base{
     html{
-        font-family: var(--font-display);
+        font-family: var(--font-display), serif;
     }
 
     body{
