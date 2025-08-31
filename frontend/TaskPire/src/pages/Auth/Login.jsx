@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import {validateEmail} from "../../utils/helper.js";
 import Input from "../../components/Inputs/Input.jsx";
 import {Link} from "react-router-dom";
+import {API_PATHS} from "../../utils/apiPaths.js";
+import axiosInstance from "../../utils/axiosInstance.js";
 
 const Login = () => {
 
@@ -26,6 +28,25 @@ const Login = () => {
         setError("");
 
         // Call API for login and handle response
+        try {
+            const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {email, password});
+            const {token, role} = response.data;
+
+            if (token){
+                localStorage.setItem("token", token);
+                if (role === "admin") {
+                    window.location.href = "/admin/index";
+                } else {
+                    window.location.href = "/user/index";
+                }
+            }
+        }catch (error) {
+            if (error.response && error.response.data.message){
+                setError(error.response.data.message);
+            }else {
+                setError("خطا در ورود به حساب کاربری. لطفا چند دقیقه دیگر تلاش کنید.");
+            }
+        }
     };
     return (
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8" dir="rtl">

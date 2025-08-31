@@ -1,4 +1,4 @@
-export const API_URL = 'http://localhost:8000';
+export const API_URL = 'http://localhost:5000';
 
 // utils/apiPaths.js
 export const API_PATHS = {
@@ -20,7 +20,7 @@ export const API_PATHS = {
         GET_DASHBOARD_DATA: "/api/tasks/dashboard-data",
         GET_USER_DATA: "/api/tasks/user-data",
         GET_ALL_TASKS: "/api/tasks",
-        GET_TASK_BY_ID: `/api/tasks/${taskId}`,
+        GET_TASK_BY_ID: (taskId) => `/api/tasks/${taskId}`,
         CREATE_TASK: "/api/tasks",
         UPDATE_TASK: (taskId) => `/api/tasks/${taskId}`,
         DELETE_TASK: (taskId) => `/api/tasks/${taskId}`,
