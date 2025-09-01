@@ -1,8 +1,12 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import Input from "../../components/Inputs/Input.jsx";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {validateEmail} from "../../utils/helper.js";
 import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector.jsx";
+import axiosInstance from "../../utils/axiosInstance.js";
+import {API_PATHS} from "../../utils/apiPaths.js";
+import {UserContext} from "../../context/userContext.jsx";
+import uploadImage from "../../utils/uploadImage.js";
 
 const SignUp = () => {
     const [profilePic, setProfilePic] = useState(null);
@@ -10,9 +14,13 @@ const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
+    const {updateUser} = useContext(UserContext);
+    const navigate = useNavigate();
 
     const handleSignUp = async (e) => {
         e.preventDefault();
+
+        let profileImageURL = '';
 
         if (!fullName){
             setError("نام و نام خانوادگی را وارد کنید.");
@@ -32,6 +40,32 @@ const SignUp = () => {
         setError("");
 
         // Call API to sign up user
+
+        try {
+            const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {name: fullName, email, password, profileImageURL});
+            const {token, role} = response.data;
+
+            if (profilePic) {
+                const imgUploadRes = await uploadImage(profilePic);
+                profileImageURL = imgUploadRes.imageURL || "";
+            }
+
+            if (token){
+                localStorage.setItem("token", token);
+                updateUser(response.data);
+                if (role === "admin") {
+                    navigate("/admin/index");
+                } else {
+                    navigate("/user/index");
+                }
+            }
+        }catch (error) {
+            if (error.response && error.response.data.message) {
+                setError(error.response.data.message);
+            }else {
+                setError("مشکلی در سرور به وجود آمده است. لطفا دوباره تلاش کنید.");
+            }
+        }
     };
     return (
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8" dir="rtl">

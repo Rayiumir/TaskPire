@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 import {validateEmail} from "../../utils/helper.js";
 import Input from "../../components/Inputs/Input.jsx";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {API_PATHS} from "../../utils/apiPaths.js";
 import axiosInstance from "../../utils/axiosInstance.js";
 import {UserContext} from "../../context/userContext.jsx";
@@ -12,6 +12,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
     const {updateUser} = useContext(UserContext);
+    const {navigate} = useNavigate();
 
     // Handle form submission and validation for login
     const handleLogin = async (e) => {
@@ -33,14 +34,14 @@ const Login = () => {
         try {
             const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {email, password});
             const {token, role} = response.data;
-            updateUser(response.data);
 
             if (token){
                 localStorage.setItem("token", token);
+                updateUser(response.data);
                 if (role === "admin") {
-                    window.location.href = "/admin/index";
+                    navigate("/admin/index");
                 } else {
-                    window.location.href = "/user/index";
+                    navigate("/user/index");
                 }
             }
         }catch (error) {

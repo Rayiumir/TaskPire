@@ -1,5 +1,5 @@
-import React from "react"
-import {BrowserRouter as Router, Route, Routes,} from "react-router-dom";
+import React, {useContext} from "react"
+import {BrowserRouter as Router, Navigate, Outlet, Route, Routes,} from "react-router-dom";
 import Login from "./pages/Auth/Login.jsx";
 import SignUp from "./pages/Auth/SignUp.jsx";
 import AdminIndex from "./pages/Admin/AdminIndex.jsx";
@@ -10,7 +10,7 @@ import MyTasks from "./pages/Users/MyTasks.jsx";
 import UserIndex from "./pages/Users/UserIndex.jsx";
 import TaskDetails from "./pages/Users/TaskDetails.jsx";
 import PrivateRoute from "./routes/PrivateRoute.jsx";
-import UserProvider from "./context/userContext.jsx";
+import UserProvider, {UserContext} from "./context/userContext.jsx";
 
 const App = () => {
   return (
@@ -35,6 +35,9 @@ const App = () => {
                       <Route path="/user/mytasks" element={<MyTasks/>}></Route>
                       <Route path="/user/taskdetails/:id" element={<TaskDetails/>}></Route>
                   </Route>
+
+                  {/* Default Route */}
+                  <Route path="/" element={<Root/>}></Route>
               </Routes>
           </Router>
       </div>
@@ -44,3 +47,14 @@ const App = () => {
 
 
 export default App
+
+const Root = () => {
+    const {user, loading} = useContext(UserContext);
+    if (loading) return <Outlet/>;
+
+    if (!user){
+        return <Navigate to={"/login"}/>
+    }
+
+    return user.role === "admin"? <Navigate to={"/admin/index"}/> : <Navigate to={"/user/index"}/>;
+}
