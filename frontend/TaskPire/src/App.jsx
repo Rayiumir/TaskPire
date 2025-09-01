@@ -10,9 +10,11 @@ import MyTasks from "./pages/Users/MyTasks.jsx";
 import UserIndex from "./pages/Users/UserIndex.jsx";
 import TaskDetails from "./pages/Users/TaskDetails.jsx";
 import PrivateRoute from "./routes/PrivateRoute.jsx";
+import UserProvider from "./context/userContext.jsx";
 
 const App = () => {
   return (
+      <UserProvider>
       <div>
           <Router>
               <Routes>
@@ -36,6 +38,7 @@ const App = () => {
               </Routes>
           </Router>
       </div>
+      </UserProvider>
   )
 }
 
