@@ -6,7 +6,7 @@ const ProfilePhotoSelector = ({ image: externalImage, setImage: externalSetImage
     const [internalImage, setInternalImage] = useState(null);
     const [previewImage, setPreviewImage] = useState(null);
 
-    // اگر از بیرون تصویر نیاد، از داخلی استفاده می‌کنیم
+    // If there is no image from the outside, we use the inside.
     const image = externalImage ?? internalImage;
     const setImage = externalSetImage ?? setInternalImage;
 

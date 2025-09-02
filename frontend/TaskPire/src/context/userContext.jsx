@@ -10,13 +10,13 @@ const UserProvider = ({children}) => {
 
     useEffect(() => {
         if (user) return;
-        const accessToken = localStorage.getItem("accessToken");
-        if (accessToken) {
+        const token = localStorage.getItem("token");
+        if (!token) {
             setLoading(false);
             return;
         }
 
-        // If there's no access token, fetch user data from API'
+        // If there's token, fetch user data from API
 
         const fetchUser = async () => {
             try {
@@ -34,13 +34,13 @@ const UserProvider = ({children}) => {
 
     const updateUser = (userData) => {
         setUser(userData);
-        localStorage.setItem("accessToken", userData.accessToken);
+        localStorage.setItem("token", userData.token);
         setLoading(false);
     }
 
     const clearUser = () => {
         setUser(null);
-        localStorage.removeItem("accessToken");
+        localStorage.removeItem("token");
     };
 
     return (

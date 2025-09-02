@@ -21,19 +21,19 @@ app.use(
 );
 
 // Connect Database
-
 connectDB();
 
 // Middleware
 app.use(express.json());
 
 // Routes
-
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/reports", reportRoutes);
 
+// Server Uploads Folder
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Start Server
 const port = process.env.PORT || 5000;
