@@ -1,4 +1,13 @@
-import {LuClipboard, LuClipboardCheck, LuEye, LuLayoutDashboard, LuLogOut, LuPlus, LuUsers} from "react-icons/lu";
+import {
+    LuClipboard,
+    LuClipboardCheck,
+    LuClipboardPlus,
+    LuEye,
+    LuLayoutDashboard,
+    LuLogOut,
+    LuPlus,
+    LuUsers
+} from "react-icons/lu";
 
 export const Side_Menu_Admin_Items = [
     {
@@ -44,7 +53,7 @@ export const Side_Menu_User_Items = [
         id: 2,
         label: "وظایف من",
         path: "/user/tasks",
-        icon: LuClipboard,
+        icon: LuClipboardPlus,
     },
     {
         id: 3,

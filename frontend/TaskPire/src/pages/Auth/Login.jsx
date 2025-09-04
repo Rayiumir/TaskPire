@@ -12,7 +12,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
     const {updateUser} = useContext(UserContext);
-    const {navigate} = useNavigate();
+    const navigate = useNavigate();
 
     // Handle form submission and validation for login
     const handleLogin = async (e) => {
