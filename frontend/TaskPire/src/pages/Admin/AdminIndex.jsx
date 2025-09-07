@@ -6,6 +6,8 @@ import {useNavigate} from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance.js";
 import {API_PATHS} from "../../utils/apiPaths.js";
 import moment from "moment";
+import {addThousandsSeparator} from "../../utils/helper.js";
+import InfoCard from "../../components/Cards/InfoCard.jsx";
 
 const AdminIndex = () => {
     useUserAuth();
@@ -40,6 +42,13 @@ const AdminIndex = () => {
                 <p className="text-xs md:text-[13px] text-gray-400 mt-1.5">
                     {moment().format("dddd Do MMM YYYY")}
                 </p>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 md:gap-6 mt-5">
+                <InfoCard
+                    label="کل تسک ها"
+                    value={addThousandsSeparator(dashboardData?.charts?.taskDistribution?.All || 0)}
+                    color="bg-primary"
+                />
             </div>
         </div>
     </AdminLayout>
