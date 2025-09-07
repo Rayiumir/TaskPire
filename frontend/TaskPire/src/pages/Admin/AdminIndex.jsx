@@ -43,12 +43,31 @@ const AdminIndex = () => {
                     {moment().format("dddd Do MMM YYYY")}
                 </p>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 md:gap-6 mt-5">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 md:gap-6 mt-5">
                 <InfoCard
-                    label="کل تسک ها"
+                    label="کل وظایف ها"
                     value={addThousandsSeparator(dashboardData?.charts?.taskDistribution?.All || 0)}
                     color="bg-primary"
                 />
+
+                <InfoCard
+                    label="در انتظار"
+                    value={addThousandsSeparator(dashboardData?.charts?.taskDistribution?.Pending || 0)}
+                    color="bg-violet-500"
+                />
+
+                <InfoCard
+                    label="در حال پیشرفت"
+                    value={addThousandsSeparator(dashboardData?.charts?.taskDistribution?.InProgress || 0)}
+                    color="bg-cyan-500"
+                />
+
+                <InfoCard
+                    label="تکمیل شده"
+                    value={addThousandsSeparator(dashboardData?.charts?.taskDistribution?.Completed || 0)}
+                    color="bg-lime-500"
+                />
+
             </div>
         </div>
     </AdminLayout>
