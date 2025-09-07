@@ -8,6 +8,8 @@ import {API_PATHS} from "../../utils/apiPaths.js";
 import moment from "moment";
 import {addThousandsSeparator} from "../../utils/helper.js";
 import InfoCard from "../../components/Cards/InfoCard.jsx";
+import {LuArrowLeft, LuArrowRight} from "react-icons/lu";
+import TaskListTable from "../../components/TaskListTable.jsx";
 
 const AdminIndex = () => {
     useUserAuth();
@@ -27,6 +29,10 @@ const AdminIndex = () => {
         }catch (error){
             console.error("Error fetching users:", error);
         }
+    };
+
+    const onSeeMore = () => {
+        navigate("/admin/tasks");
     };
 
     useEffect(() => {
@@ -67,7 +73,22 @@ const AdminIndex = () => {
                     value={addThousandsSeparator(dashboardData?.charts?.taskDistribution?.Completed || 0)}
                     color="bg-lime-500"
                 />
+            </div>
+        </div>
 
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-4 md:my-6">
+            <div className="md:col-span-2">
+                <div className="card">
+                    <div className="flex items-center justify-between">
+                        <h2 className="text-lg">
+                            وظایف اخیر
+                        </h2>
+                        <button className="card-btn" onClick={onSeeMore}>
+                            <LuArrowLeft className="text-base" /> مشاهده همه
+                        </button>
+                    </div>
+                    <TaskListTable tableData={dashboardData?.recentTasks || []}/>
+                </div>
             </div>
         </div>
     </AdminLayout>
