@@ -10,7 +10,7 @@ const AdminLayout = ({children, activeMenu}) => {
             <Navbar activeMenu={activeMenu}/>
 
             {user &&
-                <div className="" dir="rtl">
+                <div className="flex" dir="rtl">
                     <div className="max-[1080]:hidden">
                         <SideMenu activeMenu={activeMenu}/>
                     </div>
