@@ -84,8 +84,8 @@ const createTask = async (req, res) => {
             todeChecklist
         } = req.body;
 
-        if(!Array.isArray(AssignedTo)) {
-            return res.status(400).json({message: 'AssignedTo must be an array of user IDs'});
+        if(!Array.isArray(assignedTo)) {
+            return res.status(400).json({message: 'assignedTo must be an array of user IDs'});
         }
 
         const task = await Task.create({
@@ -152,69 +152,99 @@ const deleteTask = async (req, res) => {
 
 const updateTaskStatus = async (req, res) => {
     try {
+        console.log('updateTaskStatus called with id:', req.params.id);
+        console.log('req.body:', req.body);
+        if (req.body.status) {
+            if (req.body.status === "InProgress") req.body.status = "In Progress";
+            if (req.body.status === "In progress") req.body.status = "In Progress";
+        }
         const task = await Task.findById(req.params.id);
+        console.log('task found:', task);
 
         if (!task) {
+            console.log('Task not found');
             return res.status(404).json({ message: 'Task not found' });
         }
 
         const isAssigned = task.assignedTo.some(
             (userId) => userId.toString() === req.user._id.toString()
         );
+        console.log('isAssigned:', isAssigned, 'user role:', req.user.role);
 
         if (!isAssigned && req.user.role !== "admin") {
+            console.log('Not authorized');
             return res.status(403).json({ message: "Not authorized" });
         }
 
+        console.log('Setting status to:', req.body.status);
         task.status = req.body.status || task.status;
+        console.log('Task status set to:', task.status);
 
         if(task.status === "Completed") {
-            task.todoChecklist.forEach((item) => (item.completed = true));
+            console.log('Marking checklist as completed');
+            task.todeChecklist.forEach((item) => (item.completed = true));
             task.progress = 100;
         }
 
+        console.log('Saving task');
         await task.save();
+        console.log('Task saved successfully');
         res.json({ message: 'Task status updated successfully', updatedTask });
     } catch (error) {
+        console.log('Error in updateTaskStatus:', error);
         res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
 
 const updateTaskChecklist = async (req, res) => {
     try {
+        console.log('updateTaskChecklist called with id:', req.params.id);
+        console.log('req.body:', req.body);
         const task = await Task.findById(req.params.id);
+        console.log('task found:', task);
 
         if (!task) {
+            console.log('Task not found');
             return res.status(404).json({ message: 'Task not found' });
         }
 
         if (!task.assignedTo.includes(req.user._id) && req.user.role !== "admin") {
+            console.log('Not authorized');
             return res.status(403).json({ message: "Not authorized to update checklist" });
         }
 
-        task.todeChecklist = todeChecklist;
+        console.log('Setting todeChecklist to:', req.body.todeChecklist);
+        task.todeChecklist = req.body.todeChecklist;
+        console.log('todeChecklist set');
 
         // Calculate progress
-
+        console.log('Calculating progress');
         const completedCount = task.todeChecklist.filter((item) => item.completed).length;
         const totalItems = task.todeChecklist.length;
         task.progress = totalItems > 0 ? Math.round((completedCount / totalItems) * 100) : 0;
+        console.log('Progress:', task.progress);
 
         // Auto Mark as completed if all items are completed
         if (task.progress === 100 ) {
+            console.log('Setting status to Completed');
             task.status = "Completed";
         }else if(task.status === "Completed")  {
+            console.log('Setting status to In Progress');
             task.status = "In Progress";
         }else {
+            console.log('Setting status to Pending');
             task.status = "Pending";
         }
 
+        console.log('Saving task');
         await task.save();
+        console.log('Task saved');
         const updatedTask = await Task.findById(req.params.id)
             .populate("assignedTo", "name email profileImageURL");
 
         res.json({ message: 'Task checklist updated successfully', task: updatedTask });
     } catch (error) {
+        console.log('Error in updateTaskChecklist:', error);
         res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
@@ -230,7 +260,7 @@ const getDashboardData = async (req, res) => {
               dueDate: {$lt: new Date()}
           });
       const taskStatuses = ["Pending", "In Progress", "Completed"];
-      const taskDistributionRaw = await task.aggregate([
+      const taskDistributionRaw = await Task.aggregate([
           {
               $group:{
                   _id: "$status",
@@ -240,13 +270,14 @@ const getDashboardData = async (req, res) => {
       ]);
 
       const taskDistribution = taskStatuses.reduce((acc, status) => {
-          const formattedKey = status.replace(/\s+/g, "");
+          const formattedKey = status;
           acc[formattedKey] = taskDistributionRaw.find((item) => item._id === status)?.count || 0;
+          return acc;
       }, {});
       taskDistribution["All"] = totalTasks;
 
       const taskPriorities = ["High", "Medium", "Low"];
-      const taskPriorityLevelRaw = await task.aggregate([
+      const taskPriorityLevelRaw = await Task.aggregate([
           {
               $group:{
                   _id: "$priority",
@@ -309,7 +340,7 @@ const getUserData = async (req, res) => {
         ]);
 
         const taskDistribution = taskStatuses.reduce((acc, status) => {
-            const formattedKey = status.replace(/\s+/g, "");
+            const formattedKey = status;
             acc[formattedKey] = taskDistributionRaw.find((item) => item._id === status)?.count || 0;
             return acc;
         }, {});

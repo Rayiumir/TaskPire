@@ -81,11 +81,11 @@ export const PRIORITY_DATA = [
 export const STATUS_DATA = [
     {
         label: "بررسی نشده",
-        value: "pending",
+        value: "Pending",
     },
     {
         label: "در حال پیشرفت",
-        value: "In progress",
+        value: "In Progress",
     },
     {
         label: "تکمیل شده",

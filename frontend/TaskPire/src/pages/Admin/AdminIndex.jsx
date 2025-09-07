@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import AdminLayout from "../../components/layouts/AdminLayout.jsx";
 import {useUserAuth} from "../../hooks/useUserAuth.jsx";
 import {UserContext} from "../../context/userContext.jsx";
@@ -11,18 +11,28 @@ const AdminIndex = () => {
     const {user} = useContext(UserContext);
     const navigate = useNavigate();
 
-    const getUserData = async () => {
+    const [dashboardData, setDashboardData] = useState(null);
+    // const [pieChartData, setPieChartData] = useState([]);
+    // const [barChartData, setBarChartData] = useState([]);
+
+    const getDashboardData = async () => {
         try {
             const response = await axiosInstance.get(API_PATHS.TASKS.GET_DASHBOARD_DATA);
             if (response.data){
-                setUserData(response.data);
+                setDashboardData(response.data);
             }
         }catch (error){
             console.error("Error fetching users:", error);
         }
     };
 
-    return <AdminLayout activeMenu="AdminIndex"></AdminLayout>
+    useEffect(() => {
+        getDashboardData();
+
+        return () => {};
+    }, []);
+
+    return <AdminLayout activeMenu="AdminIndex">{JSON.stringify(dashboardData)}</AdminLayout>
 }
 
 export default AdminIndex
