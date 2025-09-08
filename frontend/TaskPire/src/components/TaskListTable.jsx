@@ -4,9 +4,9 @@ import moment from "moment";
 const TaskListTable = ({tableData}) => {
     const getStatusBadgeColor = (status) => {
         switch (status) {
-            case "در حال انتظار":
+            case "در انتظار":
                 return 'bg-purple-100 text-purple-500 border border-purple-200';
-            case "در حال پیشرفت":
+            case "در پیشرفت":
                 return 'bg-cyan-100 text-cyan-500 border border-cyan-200';
             case "تکمیل شده":
                 return 'bg-green-100 text-green-500 border border-green-200';

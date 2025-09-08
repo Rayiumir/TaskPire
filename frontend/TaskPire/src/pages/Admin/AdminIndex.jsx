@@ -11,6 +11,7 @@ import InfoCard from "../../components/Cards/InfoCard.jsx";
 import {LuArrowLeft, LuArrowRight} from "react-icons/lu";
 import TaskListTable from "../../components/TaskListTable.jsx";
 import CustomPieChart from "../../components/Charts/CustomPieChart.jsx";
+import CustomBerChart from "../../components/Charts/CustomBerChart.jsx";
 const COLORS = [
     "#4f46e5",
     "#60a5fa",
@@ -36,7 +37,7 @@ const AdminIndex = () => {
                 count: taskDistribution?.Pending || 0
             },
             {
-                status: "در حال پیشرفت",
+                status: "در پیشرفت",
                 count: taskDistribution?.InProgress || 0
             },
             {
@@ -90,7 +91,7 @@ const AdminIndex = () => {
     return <AdminLayout activeMenu="AdminIndex">
         <div className="card my-5">
             <div>
-                <h2 className="text-xl md:text-2xl">سلام! {user?.name}</h2>
+                <h2 className="text-lg md:text-lg font-bold">سلام! {user?.name}</h2>
                 <p className="text-xs md:text-[13px] text-gray-400 mt-1.5">
                     {moment().format("dddd Do MMM YYYY")}
                 </p>
@@ -109,7 +110,7 @@ const AdminIndex = () => {
                 />
 
                 <InfoCard
-                    label="در حال پیشرفت"
+                    label="در پیشرفت"
                     value={addThousandsSeparator(dashboardData?.charts?.taskDistribution?.InProgress || 0)}
                     color="bg-cyan-500"
                 />
@@ -128,12 +129,25 @@ const AdminIndex = () => {
                 <div className="card">
                     <div className="flex items-center justify-between">
                         <h2 className="font-medium">
-                            نمودار وظایف ها
+                            توزیع وظیفه
                         </h2>
                     </div>
                     <CustomPieChart
                         data={pieChartData}
                         colors={COLORS}
+                    />
+                </div>
+            </div>
+
+            <div>
+                <div className="card">
+                    <div className="flex items-center justify-between">
+                        <h2 className="font-medium">
+                            سطوح اولویت وظیفه
+                        </h2>
+                    </div>
+                    <CustomBerChart
+                        data={barChartData}
                     />
                 </div>
             </div>

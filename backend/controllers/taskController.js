@@ -270,10 +270,10 @@ const getDashboardData = async (req, res) => {
       ]);
 
       const taskDistribution = taskStatuses.reduce((acc, status) => {
-          const formattedKey = status;
-          acc[formattedKey] = taskDistributionRaw.find((item) => item._id === status)?.count || 0;
+          acc[status] = taskDistributionRaw.find((item) => item._id === status)?.count || 0;
           return acc;
       }, {});
+
       taskDistribution["All"] = totalTasks;
 
       const taskPriorities = ["High", "Medium", "Low"];
@@ -340,8 +340,7 @@ const getUserData = async (req, res) => {
         ]);
 
         const taskDistribution = taskStatuses.reduce((acc, status) => {
-            const formattedKey = status;
-            acc[formattedKey] = taskDistributionRaw.find((item) => item._id === status)?.count || 0;
+            acc[status] = taskDistributionRaw.find((item) => item._id === status)?.count || 0;
             return acc;
         }, {});
         taskDistribution["All"] = totalTasks;
