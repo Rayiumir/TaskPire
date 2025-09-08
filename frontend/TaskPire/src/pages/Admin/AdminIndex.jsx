@@ -10,6 +10,12 @@ import {addThousandsSeparator} from "../../utils/helper.js";
 import InfoCard from "../../components/Cards/InfoCard.jsx";
 import {LuArrowLeft, LuArrowRight} from "react-icons/lu";
 import TaskListTable from "../../components/TaskListTable.jsx";
+import CustomPieChart from "../../components/Charts/CustomPieChart.jsx";
+const COLORS = [
+    "#4f46e5",
+    "#60a5fa",
+    "#22c55e",
+];
 
 const AdminIndex = () => {
     useUserAuth();
@@ -17,14 +23,54 @@ const AdminIndex = () => {
     const navigate = useNavigate();
 
     const [dashboardData, setDashboardData] = useState(null);
-    // const [pieChartData, setPieChartData] = useState([]);
-    // const [barChartData, setBarChartData] = useState([]);
+    const [pieChartData, setPieChartData] = useState([]);
+    const [barChartData, setBarChartData] = useState([]);
+
+    const perpareChartsData = (data) => {
+        const taskDistribution = data?.taskDistribution || null;
+        const taskPriorityLevels  = data?.taskPriorityLevels || null;
+
+        const taskDistributionData = [
+            {
+                status: "در انتظار",
+                count: taskDistribution?.Pending || 0
+            },
+            {
+                status: "در حال پیشرفت",
+                count: taskDistribution?.InProgress || 0
+            },
+            {
+                status: "تکمیل شده",
+                count: taskDistribution?.Completed || 0
+            }
+        ];
+
+        setPieChartData(taskDistributionData);
+
+        const PriorityLevelsData = [
+            {
+                priority: "کم",
+                count: taskPriorityLevels?.Low || 0
+            },
+            {
+                priority: "معمولی",
+                count: taskPriorityLevels?.Medium || 0
+            },
+            {
+                priority: "زیاد",
+                count: taskPriorityLevels?.High || 0
+            },
+        ];
+
+        setBarChartData(PriorityLevelsData);
+    };
 
     const getDashboardData = async () => {
         try {
             const response = await axiosInstance.get(API_PATHS.TASKS.GET_DASHBOARD_DATA);
             if (response.data){
                 setDashboardData(response.data);
+                perpareChartsData(response.data?.charts || null);
             }
         }catch (error){
             console.error("Error fetching users:", error);
@@ -77,6 +123,21 @@ const AdminIndex = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-4 md:my-6">
+
+            <div>
+                <div className="card">
+                    <div className="flex items-center justify-between">
+                        <h2 className="font-medium">
+                            نمودار وظایف ها
+                        </h2>
+                    </div>
+                    <CustomPieChart
+                        data={pieChartData}
+                        colors={COLORS}
+                    />
+                </div>
+            </div>
+
             <div className="md:col-span-2">
                 <div className="card">
                     <div className="flex items-center justify-between">
