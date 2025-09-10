@@ -42,13 +42,14 @@ const SignUp = () => {
         // Call API to sign up user
 
         try {
-            const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {name: fullName, email, password, profileImageURL});
-            const {token, role} = response.data;
-
+            // Upload image first if exists
             if (profilePic) {
                 const imgUploadRes = await uploadImage(profilePic);
-                profileImageURL = imgUploadRes.imageURL || "";
+                profileImageURL = imgUploadRes?.imageURL || "";
             }
+
+            const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {name: fullName, email, password, profileImageURL});
+            const {token, role} = response.data;
 
             if (token){
                 localStorage.setItem("token", token);
@@ -77,7 +78,7 @@ const SignUp = () => {
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                 <form className="space-y-6" onSubmit={handleSignUp}>
-                    <ProfilePhotoSelector image={profilePic} setProfilePic={setProfilePic}/>
+                    <ProfilePhotoSelector image={profilePic} setImage={setProfilePic}/>
                     <Input type="text" value={fullName} onChange={({target}) => setFullName(target.value)} label="نام و نام خانوادگی"></Input>
                     <Input type="email" value={email} onChange={({target}) => setEmail(target.value)} label="آدرس ایمیل" placeholder="john@gmail.com"></Input>
                     <Input type="password" value={password} onChange={({target}) => setPassword(target.value)} label="رمز عبور"></Input>

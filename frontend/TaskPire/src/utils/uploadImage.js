@@ -19,4 +19,18 @@ const uploadImage = async (imageFile) => {
     }
 };
 
+const updateProfileImage = async (imageURL) => {
+    try {
+        const response = await axiosInstance.put(API_PATHS.AUTH.UPDATE_PROFILE_IMAGE, {
+            profileImageURL: imageURL
+        });
+
+        return response.data;
+    } catch (error) {
+        console.error("Error updating profile image:", error);
+        throw error;
+    }
+};
+
+export { uploadImage, updateProfileImage };
 export default uploadImage;

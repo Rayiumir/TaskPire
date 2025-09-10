@@ -25,3 +25,15 @@
 .card-btn{
     @apply flex items-center gap-3 text-[12px] font-medium text-gray-700 hover:text-primary bg-gray-50 hover:bg-blue-50 px-4 py-1.5 rounded-lg border border-gray-200/50 cursor-pointer;
 }
+
+.card-btn-fill{
+    @apply flex items-center gap-3 text-[12px] font-medium text-white hover:text-primary bg-primary hover:bg-blue-50 px-4 py-1.5 rounded-lg border-primary cursor-pointer;
+}
+
+.form-card{
+    @apply bg-white p-6 rounded-lg shadow-md shadow-gray-100 border border-gray-200/50;
+}
+
+.form-input{
+    @apply w-full text-sm text-black outline-none bg-white border border-slate-100 px-2.5 py-3 rounded-md mt-2 placeholder:text-gray-500;
+}
