@@ -66,15 +66,15 @@ export const Side_Menu_User_Items = [
 export const PRIORITY_DATA = [
     {
         label: "بالا",
-        value: "high",
+        value: "High",
     },
     {
         label: "متوسط",
-        value: "medium",
+        value: "Medium",
     },
     {
         label: "کم",
-        value: "low",
+        value: "Low",
     },
 ];
 

@@ -37,3 +37,7 @@
 .form-input{
     @apply w-full text-sm text-black outline-none bg-white border border-slate-100 px-2.5 py-3 rounded-md mt-2 placeholder:text-gray-500;
 }
+
+.add-btn{
+    @apply w-full flex items-center justify-center gap-1.5 text-xs md:text-sm font-medium text-primary whitespace-nowrap bg-blue-50 border border-blue-100 px-4 py-2 rounded-lg cursor-pointer;
+}
