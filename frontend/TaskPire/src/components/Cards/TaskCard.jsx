@@ -8,9 +8,9 @@ const TaskCard = ({title, description, priority, status, progress, createdAt, du
 
     const getStatusColor = () => {
         switch (status) {
-            case "in progress":
+            case "in Progress":
                 return "text-cyan-500 bg-cyan-50 border border-cyan-500/10";
-            case "completed":
+            case "Completed":
                 return "text-lime-500 bg-lime-50 border border-lime-500/20";
             default:
                 return "text-violet-500 bg-violet-50 border border-violet-500/10";

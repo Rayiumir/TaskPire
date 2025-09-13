@@ -41,6 +41,7 @@ const exportTasksReport = async (req, res) => {
             res.end();
         })
     }catch (error) {
+        console.error('Error in exportUsersReport:', error);
         res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
@@ -50,14 +51,14 @@ const exportUsersReport = async (req, res) => {
 
         const users = await User.find().select("name email _id").lean();
         const userTasks = await Task.find().populate("assignedTo", "name email _id");
-
         const userTaskMap = {};
 
-        userTasks.forEach((user) => {
+        users.forEach((user) => {
             userTaskMap[user._id] = {
+                _id: user._id,
                 name: user.name,
                 email: user.email,
-                taskCounts: 0,
+                taskCount: 0,
                 pendingTasks: 0,
                 inProgressTasks: 0,
                 completedTasks: 0,
@@ -76,6 +77,8 @@ const exportUsersReport = async (req, res) => {
                         }else if (task.status === "Completed") {
                             userTaskMap[assignedUser._id].completedTasks += 1;
                         }
+                    } else {
+                        console.log('User not in map:', assignedUser._id);
                     }
                 });
             }
@@ -102,6 +105,7 @@ const exportUsersReport = async (req, res) => {
         res.setHeader('Content-Disposition', 'attachment; filename=users_task_report.xlsx');
 
         return workbook.xlsx.write(res).then(() => {
+            console.log('Workbook written successfully');
             res.end();
         })
 
