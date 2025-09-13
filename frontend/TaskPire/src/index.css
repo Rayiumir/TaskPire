@@ -41,3 +41,6 @@
 .add-btn{
     @apply w-full flex items-center justify-center gap-1.5 text-xs md:text-sm font-medium text-primary whitespace-nowrap bg-blue-50 border border-blue-100 px-4 py-2 rounded-lg cursor-pointer;
 }
+.download-btn {
+    @apply items-center gap-3 text-xs md:text-[13px] text-lime-900 bg-lime-100 md:px-3 py-2 rounded border border-lime-200 hover:bg-lime-400 cursor-pointer;
+}

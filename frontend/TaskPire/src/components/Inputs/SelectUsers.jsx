@@ -37,10 +37,7 @@ const SelectUsers = ({selectedUsers, setSelectedUsers}) => {
     }, []);
 
     useEffect(() => {
-        if(selectedUsers.length === 0){
-            setTempSelectedUsers([]);
-        }
-        return () => {};
+        setTempSelectedUsers(selectedUsers);
     }, [selectedUsers]);
 
 

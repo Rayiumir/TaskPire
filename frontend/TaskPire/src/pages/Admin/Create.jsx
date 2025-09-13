@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import AdminLayout from "../../components/layouts/AdminLayout.jsx";
 import {PRIORITY_DATA} from "../../utils/data.js";
 import axiosInstance from "../../utils/axiosInstance.js";
@@ -11,6 +11,8 @@ import SelectDropdown from "../../components/Inputs/SelectDropdown.jsx";
 import SelectUsers from "../../components/Inputs/SelectUsers.jsx";
 import TodoListInput from "../../components/Inputs/TodoListInput.jsx";
 import AddAttachementsInput from "../../components/Inputs/AddAttachementsInput.jsx";
+import Modal from "../../components/Modal.jsx";
+import DeleteAlert from "../../components/DeleteAlert.jsx";
 
 const Create = () => {
     const location = useLocation();
@@ -33,7 +35,7 @@ const Create = () => {
     const [openDeleteAlert, setOpenDeleteAlert] = useState(false);
 
     const handleValueChange = (key, value) => {
-        setTaskData((prevData) => ({...taskData, [key]: value}));
+        setTaskData((prevData) => ({...prevData, [key]: value}));
     };
 
     const clearData = () => {
@@ -44,7 +46,7 @@ const Create = () => {
             dueDate: null,
             todoChecklist: [],
             assignedTo: [],
-            attachments: []
+            attachments: [],
         });
     };
 
@@ -74,9 +76,71 @@ const Create = () => {
             setloading(false);
         }
     };
-    const updateTask = async () => {};
-    const deleteTask = async () => {};
-    const getTaskDetailsById = async () => {};
+    const updateTask = async () => {
+        setloading(true);
+        try {
+            const todolist  = taskData.todoChecklist?.map((item) => {
+                const prevTodoChecklist = currentTask?.todoChecklist || [];
+                const matchedTask = prevTodoChecklist.find((task) => task.text === item);
+                return{
+                    text: item,
+                    completed: matchedTask ? matchedTask.completed : false,
+                }
+            });
+
+            const response = await axiosInstance.put(API_PATHS.TASKS.UPDATE_TASK(taskId), {
+                ...taskData,
+                dueDate: new Date(taskData.dueDate).toISOString(),
+                todoChecklist: todolist,
+            });
+
+            if (response.status === 200) {
+                toast.success("وظیفه با موفقیت به روز شد");
+                navigate("/admin/tasks");
+            }
+        }catch (error){
+            console.error("Error updating task:", error);
+            setloading(false);
+        }finally {
+            setloading(false);
+        }
+    };
+    const deleteTask = async () => {
+        try {
+            const response = await axiosInstance.delete(API_PATHS.TASKS.DELETE_TASK(taskId));
+            setOpenDeleteAlert(false);
+            toast.success("وظیفه با موفقیت حذف شد");
+            navigate("/admin/tasks");
+        }catch (error){
+            console.error("Error deleting task:", error.response?.data?.message || error.message);
+        }
+    };
+    const getTaskDetailsByID = async () => {
+        try {
+            console.log('Fetching task details for id:', taskId);
+            const response = await axiosInstance.get(API_PATHS.TASKS.GET_TASK_BY_ID(taskId));
+            console.log('Response data:', response.data);
+            if (response.data){
+                const taskInfo = response.data;
+                setCurrentTask(taskInfo);
+
+                const newAssignedTo = taskInfo?.assignedTo?.map((item) => item?._id) || [];
+                const newTodoChecklist = taskInfo?.todoChecklist?.map((item) => item?.text) || [];
+
+                setTaskData((prevState) =>({
+                    title: taskInfo.title,
+                    description: taskInfo.description,
+                    priority: taskInfo.priority,
+                    dueDate: taskInfo.dueDate ? moment(taskInfo.dueDate).format("YYYY-MM-DD") : null,
+                    todoChecklist: newTodoChecklist,
+                    assignedTo: newAssignedTo,
+                    attachments: taskInfo?.attachments || [],
+                }));
+            }
+        }catch (error){
+            console.error("Error fetching task details:", error);
+        }
+    };
     const handleSubmit = async () => {
 
         setError(null);
@@ -95,7 +159,7 @@ const Create = () => {
             setError("لطفا یک تاریخ انتخاب کنید");
             return;
         }
-        
+
         if (taskData.assignedTo?.length === 0) {
             setError("لطفا یک کاربر انتخاب کنید");
             return;
@@ -113,6 +177,13 @@ const Create = () => {
 
         createTask();
     };
+
+    useEffect(() => {
+        if (taskId) {
+            getTaskDetailsByID(taskId);
+        }
+        return  () => {};
+    }, [taskId]);
 
     return (
         <AdminLayout activeMenu="Create Task">
@@ -222,6 +293,13 @@ const Create = () => {
                     </div>
                 </div>
             </div>
+            <Modal
+                isOpen={openDeleteAlert}
+                onClose={() => setOpenDeleteAlert(false)}
+                title="حذف وظیفه"
+            >
+                <DeleteAlert content="آیا مطمئن هستید که می‌خواهید این وظیفه را حذف کنید؟" onDelete={() => deleteTask()}/>
+            </Modal>
         </AdminLayout>
     )
 }
