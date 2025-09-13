@@ -29,7 +29,7 @@ const AdminIndex = () => {
 
     const perpareChartsData = (data) => {
         const taskDistribution = data?.taskDistribution || null;
-        const taskPriorityLevels  = data?.taskPriorityLevels || null;
+        const taskPriorityLevels  = data?.taskPriorityLevel || null;
 
         const taskDistributionData = [
             {
@@ -58,7 +58,7 @@ const AdminIndex = () => {
                 count: taskPriorityLevels?.Medium || 0
             },
             {
-                priority: "زیاد",
+                priority: "بالا",
                 count: taskPriorityLevels?.High || 0
             },
         ];

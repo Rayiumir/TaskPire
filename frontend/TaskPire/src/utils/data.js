@@ -37,7 +37,7 @@ export const Side_Menu_Admin_Items = [
     {
         id: 5,
         label: "خروج",
-        path: "/logout",
+        path: "logout",
         icon: LuLogOut,
     },
 ];
@@ -80,11 +80,11 @@ export const PRIORITY_DATA = [
 
 export const STATUS_DATA = [
     {
-        label: "بررسی نشده",
+        label: "در انتظار",
         value: "Pending",
     },
     {
-        label: "در حال پیشرفت",
+        label: "در پیشرفت",
         value: "In Progress",
     },
     {

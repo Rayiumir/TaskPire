@@ -4,11 +4,11 @@ import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveC
 const CustomBerChart = ({data}) => {
     const getBarColor = (entry) => {
         switch (entry?.priority){
-            case "High":
+            case "بالا":
                 return "#FF0000";
-            case "Medium":
+            case "معمولی":
                 return "#FFA500";
-            case "Low":
+            case "کم":
                 return "#008000";
             default:
                 return "#000000";
