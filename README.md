@@ -17,7 +17,6 @@ To get started with TaskPire, clone the repository and install the dependencies:
 ```bash
 git clone https://github.com/yourusername/taskpire.git
 cd taskpire/
-npm install
 ```
 
 Running the backend server:
