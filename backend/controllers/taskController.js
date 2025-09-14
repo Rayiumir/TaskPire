@@ -236,14 +236,21 @@ const getDashboardData = async (req, res) => {
               dueDate: {$lt: new Date()}
           });
       const taskStatuses = ["Pending", "In Progress", "Completed"];
-      const taskDistributionRaw = await Task.aggregate([
+      const pipeline1 = [
           {
               $group:{
                   _id: "$status",
                   count: {$sum: 1}
               },
           },
-      ]);
+      ];
+      let taskDistributionRaw;
+      try {
+        taskDistributionRaw = await Task.aggregate(pipeline1);
+      } catch (aggError) {
+        console.error('Dashboard aggregation error:', aggError.message);
+        throw aggError;
+      }
 
       const taskDistribution = taskStatuses.reduce((acc, status) => {
           acc[status] = taskDistributionRaw.find((item) => item._id === status)?.count || 0;
@@ -253,14 +260,21 @@ const getDashboardData = async (req, res) => {
       taskDistribution["All"] = totalTasks;
 
       const taskPriorities = ["High", "Medium", "Low"];
-      const taskPriorityLevelRaw = await Task.aggregate([
+      const pipeline2 = [
           {
               $group:{
                   _id: "$priority",
                   count: {$sum: 1}
               },
           },
-      ]);
+      ];
+      let taskPriorityLevelRaw;
+      try {
+        taskPriorityLevelRaw = await Task.aggregate(pipeline2);
+      } catch (aggError) {
+        console.error('Dashboard priority aggregation error:', aggError.message);
+        throw aggError;
+      }
 
       const taskPriorityLevel = taskPriorities.reduce((acc, priority) => {
           acc[priority] = taskPriorityLevelRaw.find((item) => item._id === priority)?.count || 0;
@@ -293,10 +307,10 @@ const getDashboardData = async (req, res) => {
 const getUserData = async (req, res) => {
     try {
         const userId = req.user._id;
-
         const totalTasks = await Task.countDocuments({ assignedTo: userId });
         const pendingTasks = await Task.countDocuments({ assignedTo: userId, status: "Pending" });
         const completedTasks = await Task.countDocuments({ assignedTo: userId, status: "Completed" });
+
         const overdueTasks = await Task.countDocuments({
             assignedTo: userId,
             status: {$ne: "Completed"},
@@ -305,32 +319,55 @@ const getUserData = async (req, res) => {
 
         // Task distribution by status
         const taskStatuses = ["Pending", "In Progress", "Completed"];
-        const taskDistributionRaw = await Task.aggregate([
+        const pipeline3 = [
             {
-                $match: { assignedTo: userId },
+                $match: { assignedTo: userId }
+            },
+            {
                 $group:{
                     _id: "$status",
                     count: {$sum: 1}
-                },
-            },
-        ]);
+                }
+            }
+        ];
+        
+        let taskDistributionRaw;
+        try {
+            taskDistributionRaw = await Task.aggregate(pipeline3);
+        } catch (aggError) {
+            console.error('User data aggregation error:', aggError.message);
+            throw aggError;
+        }
+
 
         const taskDistribution = taskStatuses.reduce((acc, status) => {
             acc[status] = taskDistributionRaw.find((item) => item._id === status)?.count || 0;
             return acc;
         }, {});
+        
         taskDistribution["All"] = totalTasks;
 
         const taskPriorities = ["High", "Medium", "Low"];
-        const taskPriorityLevelRaw = await Task.aggregate([
+        const pipeline4 = [
             {
-                $match: { assignedTo: userId },
+                $match: { assignedTo: userId }
+            },
+            {
                 $group:{
                     _id: "$priority",
                     count: {$sum: 1}
-                },
-            },
-        ]);
+                }
+            }
+        ];
+
+        let taskPriorityLevelRaw;
+        try {
+            taskPriorityLevelRaw = await Task.aggregate(pipeline4);
+        } catch (aggError) {
+            console.error('User data priority aggregation error:', aggError.message);
+            throw aggError;
+        }
+
 
         const taskPriorityLevel = taskPriorities.reduce((acc, priority) => {
             acc[priority] = taskPriorityLevelRaw.find((item) => item._id === priority)?.count || 0;

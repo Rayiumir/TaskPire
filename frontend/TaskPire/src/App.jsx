@@ -33,7 +33,7 @@ const App = () => {
                   {/* User */}
                   <Route element={<PrivateRoute allowedRoles={["user"]}/>}>
                       <Route path="/user/index" element={<UserIndex/>}></Route>
-                      <Route path="/user/mytasks" element={<MyTasks/>}></Route>
+                      <Route path="/user/tasks" element={<MyTasks/>}></Route>
                       <Route path="/user/taskdetails/:id" element={<TaskDetails/>}></Route>
                   </Route>
 

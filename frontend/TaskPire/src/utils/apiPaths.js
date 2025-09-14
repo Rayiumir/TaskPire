@@ -19,14 +19,14 @@ export const API_PATHS = {
 
     TASKS: {
         GET_DASHBOARD_DATA: "/api/tasks/dashboard-data",
-        GET_USER_DATA: "/api/tasks/user-data",
+        GET_USER_DASHBOARD_DATA: "/api/tasks/user-data",
         GET_ALL_TASKS: "/api/tasks",
         GET_TASK_BY_ID: (taskId) => `/api/tasks/${taskId}`,
         CREATE_TASK: "/api/tasks",
         UPDATE_TASK: (taskId) => `/api/tasks/${taskId}`,
         DELETE_TASK: (taskId) => `/api/tasks/${taskId}`,
         UPDATE_TASK_STATUS: (taskId) => `/api/tasks/${taskId}/status`,
-        UPDATE_TASK_CHECKLIST: (taskId) => `/api/tasks/${taskId}/todo`,
+        UPDATE_TASK_TODOCHECKLIST: (taskId) => `/api/tasks/${taskId}/todo`,
     },
 
     REPORTS: {

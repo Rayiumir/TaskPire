@@ -20,6 +20,7 @@ const Tasks = () => {
         "در پیشرفت": "In Progress",
         "تکمیل شده": "Completed"
     };
+
     const handleClick = (taskData) => {
         navigate(`/admin/create`, {state: {taskId: taskData._id}});
     };
@@ -40,14 +41,6 @@ const Tasks = () => {
             toast.success("گزارش با موفقیت دانلود شد");
         }catch (error){
             console.error("Error downloading report:", error);
-            if (error.response) {
-                console.error("Response status:", error.response.status);
-                console.error("Response data:", error.response.data);
-            } else if (error.request) {
-                console.error("No response received:", error.request);
-            } else {
-                console.error("Request setup error:", error.message);
-            }
             toast.error("مشکلی در دانلود گزارش رخ داده است");
         }
     };

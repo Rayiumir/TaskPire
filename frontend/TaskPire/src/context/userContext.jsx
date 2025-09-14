@@ -12,6 +12,7 @@ const UserProvider = ({children}) => {
         if (user) return;
         const token = localStorage.getItem("token");
         if (!token) {
+            console.log("UserContext: No token, setting loading false");
             setLoading(false);
             return;
         }

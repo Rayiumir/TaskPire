@@ -8,8 +8,8 @@ const TaskCard = ({title, description, priority, status, progress, createdAt, du
 
     const getStatusColor = () => {
         switch (status) {
-            case "in Progress":
-                return "text-cyan-500 bg-cyan-50 border border-cyan-500/10";
+            case "In Progress":
+                return "text-blue-500 bg-blue-50 border border-blue-500/10";
             case "Completed":
                 return "text-lime-500 bg-lime-50 border border-lime-500/20";
             default:
@@ -33,7 +33,7 @@ const TaskCard = ({title, description, priority, status, progress, createdAt, du
             <div className={`text-[11px] font-medium ${getStatusColor()} px-4 py-0.5 rounded`}>{status}</div>
             <div className={`text-[11px] font-medium ${getPriorityColor()} px-4 py-0.5 rounded`}>اولویت {priority}</div>
         </div>
-        <div className={`px-4 border-l-[3px] ${status === "In Progress" ? "border-cyan-500" : status === "Completed" ? "border-indigo-500" : "border-violet-500"}`}>
+        <div className={`px-4 border-l-[3px] ${status === "Pending" ? "border-cyan-500" : status === "In Progress" ? "border-cyan-500" : status === "Completed" ? "border-indigo-500" : "border-violet-500"}`}>
             <h2 className="text-sm font-medium text-gray-800 mt-4 line-clamp-2">{title}</h2>
             <p className="text-xs text-gray-500 mt-1.5 line-clamp-2 leading-[18px]">{description}</p>
             <p className="text-[13px] text-gray-700/80 font-medium mt-2 mb-2 leading-[18px]">

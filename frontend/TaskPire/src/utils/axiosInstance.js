@@ -17,6 +17,8 @@ axiosInstance.interceptors.request.use((config) => {
 
     if (accessToken) {
         config.headers.Authorization = `Bearer ${accessToken}`;
+    } else {
+        console.log("Axios request interceptor: No token, no Authorization header");
     }
 
     return config;
