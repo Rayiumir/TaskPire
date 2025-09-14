@@ -31,7 +31,7 @@ npm start
 then, Running the frontend server:
 
 ```bash
-cd frontend/
+cd frontend/TaskPire/
 npm install
 npm run build
 ```
