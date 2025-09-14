@@ -5,6 +5,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {API_PATHS} from "../../utils/apiPaths.js";
 import axiosInstance from "../../utils/axiosInstance.js";
 import {UserContext} from "../../context/userContext.jsx";
+import Logo from "../image/logo.png";
 
 const Login = () => {
 
@@ -53,10 +54,11 @@ const Login = () => {
         }
     };
     return (
+
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8" dir="rtl">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                     alt="Your Company" className="mx-auto h-10 w-auto"/>
+                <img src={Logo}
+                     alt="Your Company" className="mx-auto h-20 w-auto"/>
                 <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">وارد حساب کاربری خود شوید</h2>
             </div>
 

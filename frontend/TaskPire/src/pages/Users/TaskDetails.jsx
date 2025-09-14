@@ -13,6 +13,12 @@ const TaskDetails = () => {
     const {id} = useParams();
     const [task, setTask] = useState(null);
 
+    const statusMap = {
+        "In Progress": "در حال انجام",
+        "Completed": "تکمیل شده",
+        "Pending": "در انتظار"
+    };
+
     const getStatusColor = (taskStatus) => {
         switch (taskStatus) {
             case "In Progress":
@@ -40,36 +46,63 @@ const TaskDetails = () => {
         const todoChecklist = [...task?.todoChecklist];
         const taskId = id;
 
-        if (todoChecklist && todoChecklist[index]){
+        if (todoChecklist && todoChecklist[index]) {
+            // Toggle the completion status
             todoChecklist[index].completed = !todoChecklist[index].completed;
-            const allCompleted = todoChecklist.every(item => item.completed);
 
+            // Calculate completion stats
+            const completedCount = todoChecklist.filter(item => item.completed).length;
+            const totalCount = todoChecklist.length;
+
+            // Determine new status based on completion percentage
+            let newStatus;
+            if (completedCount === 0) {
+                newStatus = "Pending";
+            } else if (completedCount === totalCount) {
+                newStatus = "Completed";
+            } else {
+                newStatus = "In Progress";
+            }
+
+            // Update UI immediately (optimistic update)
+            const updatedTask = {
+                ...task,
+                todoChecklist: todoChecklist,
+                status: newStatus
+            };
+            setTask(updatedTask);
+
+            // Only update checklist on backend
             try {
                 const response = await axiosInstance.put(API_PATHS.TASKS.UPDATE_TASK_TODOCHECKLIST(taskId), {
                     todoChecklist,
                 });
-                if (response.status === 200){
-                    let updatedTask = response.data?.task || task;
 
-                    // If all todos are completed and status is not already "Completed", update status
-                    if (allCompleted && updatedTask.status !== "Completed") {
-                        try {
-                            const statusResponse = await axiosInstance.put(API_PATHS.TASKS.UPDATE_TASK_STATUS(taskId), {
-                                status: "Completed"
-                            });
-                            if (statusResponse.status === 200) {
-                                updatedTask = { ...updatedTask, status: "Completed" };
-                            }
-                        } catch (statusError) {
-                            console.error("Error updating task status:", statusError);
-                        }
+                if (response.status === 200) {
+                    // Successfully updated checklist, keep the optimistic status update
+                    const backendTask = {
+                        ...(response.data?.task || updatedTask),
+                        status: newStatus // Keep our calculated status
+                    };
+                    setTask(backendTask);
+
+                    // Try to update status separately but don't block on it
+                    if (newStatus !== task.status) {
+                        axiosInstance.put(API_PATHS.TASKS.UPDATE_TASK_STATUS(taskId), {
+                            status: newStatus
+                        }).catch(statusError => {
+                            // Silent fail for status update - we'll keep the local state
+                            console.warn("Status API not working, keeping local status:", newStatus);
+                        });
                     }
-                    setTask(updatedTask);
-                }else {
-                    todoChecklist[index].completed = !todoChecklist[index].completed;
+                } else {
+                    // If checklist update failed, revert to original state
+                    setTask(task);
                 }
-            }catch (error){
+            } catch (error) {
                 console.error("Error updating TodoCheckList:", error);
+                // Revert to original state on error
+                setTask(task);
             }
         }
     };
@@ -97,7 +130,7 @@ const TaskDetails = () => {
                             <div className="form-card col-span-3">
                                 <div className="flex items-center justify-between">
                                     <h2 className="text-sm md:text-xl font-medium">{task?.title}</h2>
-                                    <div className={`text-[11px] md:text-[13px] font-medium ${getStatusColor(task?.status)} px-4 py-0.5 rounded`}>{task?.status}</div>
+                                    <div className={`text-[11px] md:text-[13px] font-medium ${getStatusColor(task?.status)} px-4 py-0.5 rounded`}>{statusMap[task?.status] || task?.status}</div>
                                 </div>
                                 <div className="mt-4">
                                     <InfoBox label="توضیحات" value={task?.description} />
@@ -158,4 +191,4 @@ const TaskDetails = () => {
     )
 }
 
-export default TaskDetails
+export default TaskDetails;

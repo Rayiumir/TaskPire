@@ -84,7 +84,7 @@ export const STATUS_DATA = [
         value: "Pending",
     },
     {
-        label: "در پیشرفت",
+        label: "در حال انجام",
         value: "In Progress",
     },
     {

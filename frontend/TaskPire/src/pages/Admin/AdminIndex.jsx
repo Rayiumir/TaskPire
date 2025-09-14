@@ -37,7 +37,7 @@ const AdminIndex = () => {
                 count: taskDistribution?.Pending || 0
             },
             {
-                status: "در پیشرفت",
+                status: "در حال انجام",
                 count: taskDistribution?.InProgress || 0
             },
             {
@@ -110,7 +110,7 @@ const AdminIndex = () => {
                 />
 
                 <InfoCard
-                    label="در پیشرفت"
+                    label="در حال انجام"
                     value={addThousandsSeparator(dashboardData?.charts?.taskDistribution?.InProgress || 0)}
                     color="bg-cyan-500"
                 />

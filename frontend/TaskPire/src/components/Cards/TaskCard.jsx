@@ -6,6 +6,12 @@ import {LuPaperclip} from "react-icons/lu";
 
 const TaskCard = ({title, description, priority, status, progress, createdAt, dueDate, assignedTo, attachmentCount, completedTodoCount, todoChecklist, onClick}) => {
 
+    const statusMap = {
+        "In Progress": "در حال انجام",
+        "Completed": "تکمیل شده",
+        "Pending": "در انتظار",
+    };
+
     const getStatusColor = () => {
         switch (status) {
             case "In Progress":
@@ -15,6 +21,12 @@ const TaskCard = ({title, description, priority, status, progress, createdAt, du
             default:
                 return "text-violet-500 bg-violet-50 border border-violet-500/10";
         }
+    };
+
+    const priorityMap = {
+        "Low": "کم",
+        "Medium": "معمولی",
+        "High": "بالا",
     };
 
     const getPriorityColor = () => {
@@ -30,8 +42,8 @@ const TaskCard = ({title, description, priority, status, progress, createdAt, du
 
     return <div className="bg-white rounded-xl py-4 shadow-md shadow-gray-100 border border-gray-200/50 cursor-pointer" onClick={onClick}>
         <div className="flex items-end gap-3 px-4">
-            <div className={`text-[11px] font-medium ${getStatusColor()} px-4 py-0.5 rounded`}>{status}</div>
-            <div className={`text-[11px] font-medium ${getPriorityColor()} px-4 py-0.5 rounded`}>اولویت {priority}</div>
+            <div className={`text-[11px] font-medium ${getStatusColor(status)} px-4 py-0.5 rounded`}>{statusMap[status] || status}</div>
+            <div className={`text-[11px] font-medium ${getPriorityColor(priority)} px-4 py-0.5 rounded`}>اولویت {priorityMap[priority] || priority}</div>
         </div>
         <div className={`px-4 border-l-[3px] ${status === "Pending" ? "border-cyan-500" : status === "In Progress" ? "border-cyan-500" : status === "Completed" ? "border-indigo-500" : "border-violet-500"}`}>
             <h2 className="text-sm font-medium text-gray-800 mt-4 line-clamp-2">{title}</h2>

@@ -112,7 +112,7 @@ const UserIndex = () => {
                 />
 
                 <InfoCard
-                    label="در پیشرفت"
+                    label="در حال انجام"
                     value={addThousandsSeparator(dashboardData?.charts?.taskDistribution?.InProgress || 0)}
                     color="bg-cyan-500"
                 />
