@@ -1,12 +1,43 @@
-# React + Vite
+<p align="center">
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="./Logo/TaskPire_Dark.png">
+        <source media="(prefers-color-scheme: light)" srcset="./Logo/TaskPire_Light.png">
+        <img alt="TaskSquad Logo" src="./Logo/TaskPire_Light.png">
+    </picture>
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# TaskPire
 
-Currently, two official plugins are available:
+TaskPire is a task management tool built with React and Vite. It provides a simple and intuitive interface for managing tasks.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
 
-## Expanding the ESLint configuration
+To get started with TaskPire, clone the repository and install the dependencies:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+git clone https://github.com/yourusername/taskpire.git
+cd taskpire/
+npm install
+```
+
+Running the backend server:
+
+```bash
+cd backend/
+npm install
+npm start
+```
+
+then, Running the frontend server:
+
+```bash
+cd frontend/
+npm install
+npm run build
+```
+
+Open your browser and navigate to `http://localhost:5173` to see the app in action.
+
+## Contributing
+
+We welcome contributions to TaskPire! If you'd like to contribute, please fork the repository and submit a pull request.

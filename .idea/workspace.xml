@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4446b500-163b-4bce-bdc3-0e2472b1888b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/TaskPire.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.env" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="TypeScript JSX File" />
+        <option value="JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="31kBH93u8WhFbhhWesTreCYKCxp" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;18.19.1&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;18.19.123&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/rayium/www/TaskPire/backend/routes&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/rayium/Program/WebStorm-252.23892.411/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backend/routes" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backend/controllers" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-WS-252.23892.411" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4446b500-163b-4bce-bdc3-0e2472b1888b" name="Changes" comment="" />
+      <created>1756058099663</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1756058099663</updated>
+      <workItem from="1756058101108" duration="307000" />
+      <workItem from="1756058424829" duration="3771000" />
+      <workItem from="1756064710825" duration="8202000" />
+      <workItem from="1756081667230" duration="590000" />
+      <workItem from="1756249559514" duration="5076000" />
+      <workItem from="1756297630371" duration="6978000" />
+      <workItem from="1756332188344" duration="5792000" />
+      <workItem from="1756338215500" duration="66000" />
+      <workItem from="1756338289750" duration="2070000" />
+      <workItem from="1756394933263" duration="5466000" />
+      <workItem from="1756410734367" duration="10671000" />
+      <workItem from="1756483613916" duration="3213000" />
+      <workItem from="1756490656906" duration="2260000" />
+      <workItem from="1756496789802" duration="12160000" />
+      <workItem from="1756553434818" duration="2784000" />
+      <workItem from="1756651126264" duration="2725000" />
+      <workItem from="1756669407263" duration="4149000" />
+      <workItem from="1756731750743" duration="6612000" />
+      <workItem from="1756756228156" duration="9422000" />
+      <workItem from="1756820886475" duration="2639000" />
+      <workItem from="1756852306113" duration="3999000" />
+      <workItem from="1756925413271" duration="1491000" />
+      <workItem from="1756938439616" duration="17000" />
+      <workItem from="1756938472927" duration="3533000" />
+      <workItem from="1756997427591" duration="2102000" />
+      <workItem from="1757026262494" duration="4147000" />
+      <workItem from="1757075426115" duration="638000" />
+      <workItem from="1757202395215" duration="3302000" />
+      <workItem from="1757252952316" duration="3330000" />
+      <workItem from="1757276884216" duration="6406000" />
+      <workItem from="1757337926846" duration="3372000" />
+      <workItem from="1757361783717" duration="8916000" />
+      <workItem from="1757416860418" duration="2905000" />
+      <workItem from="1757448478035" duration="9355000" />
+      <workItem from="1757502836329" duration="4555000" />
+      <workItem from="1757537250680" duration="5472000" />
+      <workItem from="1757635060330" duration="2912000" />
+      <workItem from="1757678178157" duration="2559000" />
+      <workItem from="1757705537514" duration="8778000" />
+      <workItem from="1757774611030" duration="2509000" />
+      <workItem from="1757783303203" duration="19672000" />
+      <workItem from="1757846962318" duration="14725000" />
+      <workItem from="1757866400666" duration="5502000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="javascript:npm:react" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:tailwindcss" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:vite" />
+  </component>
+</project>
