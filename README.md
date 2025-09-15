@@ -15,7 +15,7 @@ TaskPire is a task management tool built with React and Vite. It provides a simp
 To get started with TaskPire, clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/yourusername/taskpire.git
+https://github.com/Rayiumir/TaskPire.git
 cd taskpire/
 ```
 
