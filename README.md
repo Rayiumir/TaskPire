@@ -54,3 +54,25 @@ To create admin access, just change from `user` to `admin` in the `users` sectio
 ## Contributing
 
 We welcome contributions to TaskPire! If you'd like to contribute, please fork the repository and submit a pull request.
+
+# Screenshots
+
+<table class="table">
+  <tbody>
+    <tr>
+      <td>
+        <img src="../TaskPire/Screenshots/1.png" width="100%" alt="Admin Index">
+      </td>
+      <td>
+        <img src="../TaskPire/Screenshots/2.png" width="100%" alt="Tasks">
+      </td>
+      <td>
+        <img src="../TaskPire/Screenshots/3.png" width="100%" alt="Create Tasks">
+      </td>
+      <td>
+        <img src="../TaskPire/Screenshots/4.png" width="100%" alt="Users">
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table class="table">
