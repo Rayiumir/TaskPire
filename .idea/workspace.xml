@@ -5,8 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4446b500-163b-4bce-bdc3-0e2472b1888b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/components/Cards/StatCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/components/Cards/StatCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/components/Cards/TaskCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/components/Cards/TaskCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/components/Cards/UserCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/components/Cards/UserCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/components/Charts/CustomBerChart.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/components/Charts/CustomBerChart.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/components/Charts/CustomTooltip.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/components/Charts/CustomTooltip.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/components/DeleteAlert.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/components/DeleteAlert.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/components/Inputs/AddAttachementsInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/components/Inputs/AddAttachementsInput.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/components/Inputs/ProfilePhotoSelector.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/components/Inputs/ProfilePhotoSelector.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/components/Inputs/SelectDropdown.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/components/Inputs/SelectDropdown.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/components/Inputs/SelectUsers.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/components/Inputs/SelectUsers.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/components/Inputs/TodoListInput.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/components/Inputs/TodoListInput.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/components/TaskListTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/components/TaskListTable.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/components/TaskStatusTabs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/components/TaskStatusTabs.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/components/layouts/AdminLayout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/components/layouts/AdminLayout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/components/layouts/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/components/layouts/Navbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/components/layouts/SideMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/components/layouts/SideMenu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Admin/AdminIndex.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Admin/AdminIndex.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Admin/Create.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Admin/Create.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Admin/Tasks.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Admin/Tasks.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Admin/Users.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Admin/Users.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Auth/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Auth/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Auth/SignUp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Auth/SignUp.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/utils/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/utils/data.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,9 +42,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="TypeScript JSX File" />
         <option value="JSX File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -46,7 +72,7 @@
     &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;18.19.1&quot;,
     &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;18.19.123&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/rayium/www/TaskPire/backend/routes&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/rayium/Desktop/TaskPire&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -124,6 +150,10 @@
       <workItem from="1757783303203" duration="19672000" />
       <workItem from="1757846962318" duration="14725000" />
       <workItem from="1757866400666" duration="5861000" />
+      <workItem from="1757976520385" duration="96000" />
+      <workItem from="1757976617814" duration="4980000" />
+      <workItem from="1758020965285" duration="8372000" />
+      <workItem from="1758042350787" duration="5024000" />
     </task>
     <servers />
   </component>

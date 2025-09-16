@@ -7,18 +7,20 @@ import {LuFileSpreadsheet} from "react-icons/lu";
 import TaskStatusTabs from "../../components/TaskStatusTabs.jsx";
 import TaskCard from "../../components/Cards/TaskCard.jsx";
 import toast from "react-hot-toast";
+import { useTranslation } from 'react-i18next';
 
 const Tasks = () => {
     const [allTasks, setAllTasks] = useState([]);
     const [tabs, setTabs] = useState([]);
     const [filterStatus, setFilterStatus] = useState("All");
     const navigate  = useNavigate();
+    const { t } = useTranslation();
 
     const statusMapping = {
-        "همه": "All",
-        "در انتظار": "Pending",
-        "در پیشرفت": "In Progress",
-        "تکمیل شده": "Completed"
+        "All" : "All",
+        "Pending": "Pending",
+        "In Progress": "In Progress",
+        "Completed": "Completed"
     };
 
     const handleClick = (taskData) => {
@@ -38,10 +40,10 @@ const Tasks = () => {
             link.click();
             link.parentNode.removeChild(link);
             window.URL.revokeObjectURL(url);
-            toast.success("گزارش با موفقیت دانلود شد");
+            toast.success(t("The Report was downloaded successfully."));
         }catch (error){
             console.error("Error downloading report:", error);
-            toast.error("مشکلی در دانلود گزارش رخ داده است");
+            toast.error(t("There was a problem downloading the report."));
         }
     };
     const getAllTasks = async () => {
@@ -59,10 +61,10 @@ const Tasks = () => {
             const statusSummary = response.data?.statusSummary || [];
 
             const statusArray = [
-                {label: "همه", count: statusSummary.all || 0},
-                {label: "در انتظار", count: statusSummary.pendingTasks || 0},
-                {label: "در پیشرفت", count: statusSummary.inProgressTasks || 0},
-                {label: "تکمیل شده", count: statusSummary.completedTasks || 0},
+                {label: "All", count: statusSummary.all || 0},
+                {label: "Pending", count: statusSummary.pendingTasks || 0},
+                {label: "In Progress", count: statusSummary.inProgressTasks || 0},
+                {label: "Completed", count: statusSummary.completedTasks || 0},
             ];
 
             setTabs(statusArray);
@@ -80,7 +82,7 @@ const Tasks = () => {
         <div className="my-5">
             <div className="flex flex-col md:flex-row md:items-center justify-between">
                 <div className="flex items-center justify-between gap-3">
-                    <h2 className="text-xl md:text-xl font-medium">وظایف من</h2>
+                    <h2 className="text-xl md:text-xl font-medium">{t("Manage Tasks")}</h2>
                 </div>
 
                 {tabs?.[0]?.count > 0 && (
@@ -88,7 +90,7 @@ const Tasks = () => {
                         <TaskStatusTabs tabs={tabs} activeTab={filterStatus} setActiveTab={setFilterStatus}/>
                         <button className="flex download-btn" onClick={handleDownloadReport}>
                             <LuFileSpreadsheet className="text-lg"/>
-                            دانلود گزارش
+                            {t("Download Report")}
                         </button>
                     </div>
                 )}

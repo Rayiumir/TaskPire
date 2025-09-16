@@ -6,6 +6,7 @@ import {API_PATHS} from "../../utils/apiPaths.js";
 import axiosInstance from "../../utils/axiosInstance.js";
 import {UserContext} from "../../context/userContext.jsx";
 import Logo from "../image/logo.png";
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
 
@@ -14,18 +15,19 @@ const Login = () => {
     const [error, setError] = useState(null);
     const {updateUser} = useContext(UserContext);
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     // Handle form submission and validation for login
     const handleLogin = async (e) => {
         e.preventDefault();
 
         if (!validateEmail(email)){
-            setError("لطفا یک آدرس ایمیل معتبر وارد کنید");
+            setError(t("Please enter a valid email address."));
             return
         }
 
         if (!password){
-            setError("رمز عبور را وارد کنید.");
+            setError(t("Enter your password."));
             return;
         }
 
@@ -49,7 +51,7 @@ const Login = () => {
             if (error.response && error.response.data.message){
                 setError(error.response.data.message);
             }else {
-                setError("خطا در ورود به حساب کاربری. لطفا چند دقیقه دیگر تلاش کنید.");
+                setError(t("Error logging in. Please try again in a few minutes."));
             }
         }
     };
@@ -59,26 +61,26 @@ const Login = () => {
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img src={Logo}
                      alt="Your Company" className="mx-auto h-20 w-auto"/>
-                <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">وارد حساب کاربری خود شوید</h2>
+                <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">{t("Login to your account")}</h2>
             </div>
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                 <form className="space-y-6" onSubmit={handleLogin}>
-                    <Input type="email" value={email} onChange={({target}) => setEmail(target.value)} label="آدرس ایمیل" placeholder="john@gmail.com"></Input>
+                    <Input type="email" value={email} onChange={({target}) => setEmail(target.value)} label={t("Email")} placeholder="john@gmail.com"></Input>
 
-                    <Input type="password" value={password} onChange={({target}) => setPassword(target.value)} label="رمز عبور"></Input>
+                    <Input type="password" value={password} onChange={({target}) => setPassword(target.value)} label={t("Password")}></Input>
 
                     {error && <p className="text-sm/6 text-red-500">{error}</p>}
 
                     <div>
                         <button type="submit"
-                                className="flex w-full justify-center rounded-full bg-indigo-600 px-3 py-2 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">ورود
+                                className="flex w-full justify-center rounded-full bg-indigo-600 px-3 py-2 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">{t("Login")}
                         </button>
                     </div>
                 </form>
 
                 <p className="mt-10 text-center text-sm/6 text-gray-500">
-                    <Link to="/signup" className="font-semibold text-indigo-600 hover:text-indigo-500">ثبت نام در سایت</Link>
+                    <Link to="/signup" className="font-semibold text-indigo-600 hover:text-indigo-500">{t("Register on the TaskPire")}</Link>
                 </p>
             </div>
         </div>

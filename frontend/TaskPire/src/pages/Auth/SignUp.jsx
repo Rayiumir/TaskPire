@@ -8,6 +8,7 @@ import {API_PATHS} from "../../utils/apiPaths.js";
 import {UserContext} from "../../context/userContext.jsx";
 import uploadImage from "../../utils/uploadImage.js";
 import Logo from "../image/logo.png";
+import { useTranslation } from 'react-i18next';
 
 const SignUp = () => {
     const [profilePic, setProfilePic] = useState(null);
@@ -17,6 +18,7 @@ const SignUp = () => {
     const [error, setError] = useState(null);
     const {updateUser} = useContext(UserContext);
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -24,17 +26,17 @@ const SignUp = () => {
         let profileImageURL = '';
 
         if (!fullName){
-            setError("نام و نام خانوادگی را وارد کنید.");
+            setError(t("Enter your first and last name."));
             return;
         }
 
         if (!validateEmail(email)){
-            setError("لطفا یک آدرس ایمیل معتبر وارد کنید");
+            setError(t("Please enter a valid email address."));
             return
         }
 
         if (!password){
-            setError("رمز عبور را وارد کنید.");
+            setError(t("Enter your password."));
             return;
         }
 
@@ -65,7 +67,7 @@ const SignUp = () => {
             if (error.response && error.response.data.message) {
                 setError(error.response.data.message);
             }else {
-                setError("مشکلی در سرور به وجود آمده است. لطفا دوباره تلاش کنید.");
+                setError(t("Error logging in. Please try again in a few minutes."));
             }
         }
     };
@@ -74,27 +76,27 @@ const SignUp = () => {
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img src={Logo}
                      alt="Your Company" className="mx-auto h-20 w-auto"/>
-                <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">ثبت نام در سایت</h2>
+                <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">{t("Register on the TaskPire")}</h2>
             </div>
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                 <form className="space-y-6" onSubmit={handleSignUp}>
                     <ProfilePhotoSelector image={profilePic} setImage={setProfilePic}/>
-                    <Input type="text" value={fullName} onChange={({target}) => setFullName(target.value)} label="نام و نام خانوادگی"></Input>
-                    <Input type="email" value={email} onChange={({target}) => setEmail(target.value)} label="آدرس ایمیل" placeholder="john@gmail.com"></Input>
-                    <Input type="password" value={password} onChange={({target}) => setPassword(target.value)} label="رمز عبور"></Input>
+                    <Input type="text" value={fullName} onChange={({target}) => setFullName(target.value)} label={t("First and last name")}></Input>
+                    <Input type="email" value={email} onChange={({target}) => setEmail(target.value)} label={t("Email")} placeholder="john@gmail.com"></Input>
+                    <Input type="password" value={password} onChange={({target}) => setPassword(target.value)} label={t("Password")}></Input>
 
                     {error && <p className="text-sm/6 text-red-500">{error}</p>}
 
                     <div>
                         <button type="submit"
-                                className="flex w-full justify-center rounded-full bg-indigo-600 px-3 py-2 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">ثبت نام
+                                className="flex w-full justify-center rounded-full bg-indigo-600 px-3 py-2 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"> {t("SignUp")}
                         </button>
                     </div>
                 </form>
 
                 <p className="mt-10 text-center text-sm/6 text-gray-500">
-                    <Link to="/login" className="font-semibold text-indigo-600 hover:text-indigo-500">قبلا ثبت نام کردید؟ وارد شوید</Link>
+                    <Link to="/login" className="font-semibold text-indigo-600 hover:text-indigo-500">{t("Already registered? Login")}</Link>
                 </p>
             </div>
         </div>

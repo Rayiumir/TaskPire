@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import {HiMiniPlus, HiOutlineTrash} from "react-icons/hi2";
+import { useTranslation } from 'react-i18next';
 
 const TodoListInput = ({ todoList, setTodoList }) => {
     const [option, setOption] = useState("");
-
+    const { t } = useTranslation();
     const handleAddOption = () => {
         if (option.trim()){
             setTodoList([...todoList, option.trim()]);
@@ -33,13 +34,13 @@ const TodoListInput = ({ todoList, setTodoList }) => {
         <div className="flex items-center gap-5 mt-4 w-full">
             <input
                 type="text"
-                placeholder="افزودن وظیفه"
+                placeholder={t('Add task')}
                 value={option}
                 onChange={({target}) => setOption(target.value)}
                 className="flex-1 text-[13px] text-black outline-none bg-white border border-gray-100 px-3 py-2 rounded-md"
             />
             <button className="card-btn text-nowrap" onClick={handleAddOption}>
-                <HiMiniPlus className="text-lg"/> افزودن
+                <HiMiniPlus className="text-lg"/> {t('Add')}
             </button>
         </div>
 

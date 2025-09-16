@@ -1,14 +1,17 @@
 import React from "react";
 import moment from "moment";
+import {useTranslation} from "react-i18next";
 
 const TaskListTable = ({tableData}) => {
+    const { t, i18n } = useTranslation();
+    const currentLang = i18n.language;
     const getStatusBadgeColor = (status) => {
         switch (status) {
-            case "در انتظار":
+            case "Pending":
                 return 'bg-purple-100 text-purple-500 border border-purple-200';
-            case "در پیشرفت":
+            case "In Progress":
                 return 'bg-cyan-100 text-cyan-500 border border-cyan-200';
-            case "تکمیل شده":
+            case "Completed":
                 return 'bg-green-100 text-green-500 border border-green-200';
             default:
                 return 'bg-gray-100 text-gray-500 border border-gray-200';
@@ -17,11 +20,11 @@ const TaskListTable = ({tableData}) => {
 
     const getPriorityBadgeColor = (priority) => {
         switch (priority) {
-            case "کم":
+            case "Low":
                 return 'bg-green-100 text-green-500 border border-green-200';
-            case "معمولی":
+            case "Medium":
                 return 'bg-orange-100 text-orange-500 border border-orange-200';
-            case "زیاد":
+            case "High":
                 return 'bg-red-100 text-red-500 border border-red-200';
             default:
                 return 'bg-gray-100 text-gray-500 border border-gray-200';
@@ -32,18 +35,18 @@ const TaskListTable = ({tableData}) => {
         <div className="overflow-x-auto p-0 rounded-lg mt-3">
             <table className="min-w-full">
                 <thead>
-                    <tr className="text-right">
+                    <tr className={currentLang === 'fa' ? 'text-right' : 'text-left'}>
                         <th className="py-3 px-4 text-gray-800 font-medium text-[13px]">
-                            عنوان
+                            {t("Title")}
                         </th>
                         <th className="py-3 px-4 text-gray-800 font-medium text-[13px]">
-                            وضعیت
+                            {t("Status")}
                         </th>
                         <th className="py-3 px-4 text-gray-800 font-medium text-[13px]">
-                            اولویت
+                            {t("Priority")}
                         </th>
                         <th className="py-3 px-4 text-gray-800 font-medium text-[13px] hidden md:table-cell">
-                            ایجاد شده در
+                            {t("Created At")}
                         </th>
                     </tr>
                 </thead>

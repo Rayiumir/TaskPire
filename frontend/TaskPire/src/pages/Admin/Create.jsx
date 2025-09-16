@@ -13,11 +13,13 @@ import TodoListInput from "../../components/Inputs/TodoListInput.jsx";
 import AddAttachementsInput from "../../components/Inputs/AddAttachementsInput.jsx";
 import Modal from "../../components/Modal.jsx";
 import DeleteAlert from "../../components/DeleteAlert.jsx";
+import { useTranslation } from 'react-i18next';
 
 const Create = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const {taskId} = location.state || {};
+    const { t } = useTranslation();
 
     const [taskData, setTaskData] = useState({
         title: "",
@@ -65,7 +67,7 @@ const Create = () => {
             });
 
             if (response.status === 201) {
-                toast.success("وظیفه با موفقیت ایجاد شد");
+                toast.success(t("Task created successfully."));
                 clearData();
                 navigate("/admin/tasks");
             }
@@ -95,7 +97,7 @@ const Create = () => {
             });
 
             if (response.status === 200) {
-                toast.success("وظیفه با موفقیت به روز شد");
+                toast.success(t("Task updated successfully."));
                 navigate("/admin/tasks");
             }
         }catch (error){
@@ -146,27 +148,27 @@ const Create = () => {
         setError(null);
 
         if (!taskData.title.trim()) {
-            setError("عنوان نمی تواند خالی باشد");
+            setError(t("Title cannot be empty."));
             return;
         }
 
         if (!taskData.description.trim()) {
-            setError("توضیحات نمی تواند خالی باشد");
+            setError(t("Description cannot be empty."));
             return;
         }
 
         if (!taskData.dueDate) {
-            setError("لطفا یک تاریخ انتخاب کنید");
+            setError(t("Please select a date."));
             return;
         }
 
         if (taskData.assignedTo?.length === 0) {
-            setError("لطفا یک کاربر انتخاب کنید");
+            setError(t("Please select a user."));
             return;
         }
 
         if (taskData.todoChecklist?.length === 0) {
-            setError("لطفا یک مورد به لیست کارها اضافه کنید");
+            setError(t("Please add an item to the todo list."));
             return;
         }
 
@@ -193,18 +195,18 @@ const Create = () => {
                         <div className="form-card col-span-3">
                             <div className="flex items-center justify-between">
                                 <h2 className=" text-xl md:text-xl font-medium">
-                                    {taskId ? "به روز رسانی وظیفه" : "ایجاد وظیفه"}
+                                    {taskId ? t('Update task') : t('Create task')}
                                 </h2>
 
                                 {taskId && (
                                     <button className="flex items-center gap-1.5 text-[13px] font-medium text-rose-500 bg-rose-50 rounded px-2 py-1 border border-rose-100 hover:border-rose-300 cursor-pointer" onClick={() => setOpenDeleteAlert(true)}>
-                                        <LuTrash2 className="text-base"/> حذف
+                                        <LuTrash2 className="text-base"/> {t('Remove')}
                                     </button>
                                 )}
                             </div>
                             <div className="mt-4">
                                 <label className="text-xs font-medium text-slate-600">
-                                    عنوان وظیفه
+                                    {t('Title')}
                                 </label>
                                 <input
                                     type="text"
@@ -215,7 +217,7 @@ const Create = () => {
                             </div>
                             <div className="mt-4">
                                 <label className="text-xs font-medium text-slate-600">
-                                    توضیحات
+                                    {t('Description')}
                                 </label>
                                 <textarea
                                     className="form-input"
@@ -226,7 +228,7 @@ const Create = () => {
                             <div className="grid grid-cols-12 gap-4 mt-2">
                                 <div className="col-span-6 md:col-span-4">
                                     <label className="text-xs font-medium text-slate-600">
-                                        اولویت
+                                        {t('Priority')}
                                     </label>
 
                                     <SelectDropdown
@@ -239,7 +241,7 @@ const Create = () => {
 
                                 <div className="col-span-6 md:col-span-4">
                                     <label className="text-xs font-medium text-slate-600">
-                                        تاریخ
+                                        {t('Date')}
                                     </label>
                                     <input
                                         type="date"
@@ -251,7 +253,7 @@ const Create = () => {
 
                                 <div className="col-span-12 md:col-span-4">
                                     <label className="text-xs font-medium text-slate-600 mt-5">
-                                        اختصاص دادن به
+                                        {t('Assigned To')}
                                     </label>
                                     <SelectUsers
                                         selectedUsers={taskData.assignedTo}
@@ -262,7 +264,7 @@ const Create = () => {
                             </div>
                             <div className="mt-3">
                                 <label className="text-xs font-medium text-slate-600">
-                                    چک لیست کارها
+                                    {t('Todo Check List')}
                                 </label>
                                 <TodoListInput
                                     todoList={taskData?.todoChecklist}
@@ -270,7 +272,7 @@ const Create = () => {
                                 />
                             </div>
                             <div className="mt-3">
-                                <label className="text-xs font-medium text-slate-600">اضافه کردن پیوست‌ها</label>
+                                <label className="text-xs font-medium text-slate-600">{t('Add Links')}</label>
 
                                 <AddAttachementsInput
                                     attachments={taskData?.attachments}
@@ -286,7 +288,7 @@ const Create = () => {
 
                             <div className="flex justify-end mt-7">
                                 <button className="add-btn" onClick={handleSubmit} disabled={loading}>
-                                    {taskId ? "به روز رسانی" : "ایجاد وظیفه"}
+                                    {taskId ? t('Update task') : t('Create task')}
                                 </button>
                             </div>
                         </div>
@@ -296,9 +298,9 @@ const Create = () => {
             <Modal
                 isOpen={openDeleteAlert}
                 onClose={() => setOpenDeleteAlert(false)}
-                title="حذف وظیفه"
+                title={t('Remove task')}
             >
-                <DeleteAlert content="آیا مطمئن هستید که می‌خواهید این وظیفه را حذف کنید؟" onDelete={() => deleteTask()}/>
+                <DeleteAlert content={t('Are you sure you want to delete this task?')} onDelete={() => deleteTask()}/>
             </Modal>
         </AdminLayout>
     )

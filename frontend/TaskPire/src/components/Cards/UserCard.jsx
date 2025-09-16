@@ -14,9 +14,9 @@ const UserCard = ({userInfo}) => {
                 </div>
             </div>
             <div className="flex items-end gap-3 mt-5">
-                <StatCard label="در انتظار" count={userInfo?.pending || 0} status="Pending"/>
-                <StatCard label="در حال انجام" count={userInfo?.inProgress || 0} status="In Progress"/>
-                <StatCard label="تکمیل شده" count={userInfo?.completed || 0} status="Completed"/>
+                <StatCard label="Pending" count={userInfo?.pending || 0} status="Pending"/>
+                <StatCard label="In Progress" count={userInfo?.inProgress || 0} status="In Progress"/>
+                <StatCard label="Completed" count={userInfo?.completed || 0} status="Completed"/>
             </div>
         </div>
     );

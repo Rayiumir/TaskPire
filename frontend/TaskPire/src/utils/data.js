@@ -8,35 +8,36 @@ import {
     LuPlus,
     LuUsers
 } from "react-icons/lu";
+import i18n from "i18next";
 
 export const Side_Menu_Admin_Items = [
     {
         id: 1,
-        label: "پیشخوان",
+        label: "Home",
         path: "/admin/index",
         icon: LuLayoutDashboard,
     },
     {
         id: 2,
-        label: "مدیریت وظایف",
+        label: "Tasks",
         path: "/admin/tasks",
         icon: LuClipboardCheck,
     },
     {
         id: 3,
-        label: "ایجاد وظیفه جدید",
+        label: "Create task",
         path: "/admin/create",
         icon: LuPlus,
     },
     {
         id: 4,
-        label: "مدیریت کاربران",
+        label: "Users",
         path: "/admin/users",
         icon: LuUsers,
     },
     {
         id: 5,
-        label: "خروج",
+        label: "Logout",
         path: "logout",
         icon: LuLogOut,
     },
@@ -45,19 +46,19 @@ export const Side_Menu_Admin_Items = [
 export const Side_Menu_User_Items = [
     {
         id: 1,
-        label: "پیشخوان",
+        label: "Home",
         path: "/user/index",
         icon: LuLayoutDashboard,
     },
     {
         id: 2,
-        label: "وظایف من",
+        label: "My Tasks",
         path: "/user/tasks",
         icon: LuClipboardPlus,
     },
     {
         id: 3,
-        label: "خروج",
+        label: "Logout",
         path: "logout",
         icon: LuLogOut,
     },
@@ -65,30 +66,30 @@ export const Side_Menu_User_Items = [
 
 export const PRIORITY_DATA = [
     {
-        label: "بالا",
+        label: "High",
         value: "High",
     },
     {
-        label: "متوسط",
+        label: "Medium",
         value: "Medium",
     },
     {
-        label: "کم",
+        label: "Low",
         value: "Low",
     },
 ];
 
 export const STATUS_DATA = [
     {
-        label: "در انتظار",
+        label: "Pending",
         value: "Pending",
     },
     {
-        label: "در حال انجام",
+        label: "In Progress",
         value: "In Progress",
     },
     {
-        label: "تکمیل شده",
+        label: "Completed",
         value: "Completed",
     },
 ];

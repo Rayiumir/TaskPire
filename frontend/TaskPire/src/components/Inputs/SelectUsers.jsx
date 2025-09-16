@@ -4,11 +4,13 @@ import {API_PATHS} from "../../utils/apiPaths.js";
 import {LuUsers} from "react-icons/lu";
 import Modal from "../Modal.jsx";
 import AvatarGroup from "../AvatarGroup.jsx";
+import { useTranslation } from 'react-i18next';
 
 const SelectUsers = ({selectedUsers, setSelectedUsers}) => {
     const [allUsers, setAllUsers] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [tempSelectedUsers, setTempSelectedUsers] = useState([]);
+    const { t } = useTranslation();
 
     const getAllUsers = async () => {
         try {
@@ -45,7 +47,7 @@ const SelectUsers = ({selectedUsers, setSelectedUsers}) => {
     <div className="space-y-4 mt-4">
         {selectedUserAvatars.length === 0 && (
             <button className="card-btn" onClick={() => setIsModalOpen(true)}>
-                <LuUsers className="text-xs"/> افزودن کاربر
+                <LuUsers className="text-xs"/> {t('Add User')}
             </button>
         )}
 
@@ -55,7 +57,7 @@ const SelectUsers = ({selectedUsers, setSelectedUsers}) => {
             </div>
         )}
 
-        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="انتخاب کاربران">
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title={t('Select Users')}>
             <div className="space-y-4 h-[60vh] overflow-y-auto">
                 {allUsers.map((user) => (
                     <div key={user._id} className="flex items-center gap-4 p-3 border-b border-gray-200">
@@ -84,10 +86,10 @@ const SelectUsers = ({selectedUsers, setSelectedUsers}) => {
             </div>
             <div className="flex justify-end gap-4 pt-4">
                 <button className="card-btn" onClick={() => setIsModalOpen(false)}>
-                    انصراف
+                    {t('Cancel')}
                 </button>
                 <button className="card-btn-fill" onClick={handleAssign}>
-                    تایید
+                    {t('Ok')}
                 </button>
             </div>
         </Modal>

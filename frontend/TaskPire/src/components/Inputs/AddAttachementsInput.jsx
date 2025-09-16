@@ -1,9 +1,11 @@
 import React, {useState} from "react";
 import {HiMiniPlus, HiOutlineTrash} from "react-icons/hi2";
 import {LuPaperclip} from "react-icons/lu";
+import { useTranslation } from 'react-i18next';
 
 const AddAttachementsInput = ({ attachments, setAttachments }) => {
     const [option, setOption] =  useState("");
+    const { t } = useTranslation();
     const handleAddOption = () => {
         if (option.trim()){
             setAttachments([...attachments, option.trim()]);
@@ -36,13 +38,13 @@ const AddAttachementsInput = ({ attachments, setAttachments }) => {
                 <input
                     className="w-full text-[13px] text-black outline-none bg-white py-2"
                     type="text"
-                    placeholder="اضافه کردن پیوست‌ها"
+                    placeholder={t('Add Links')}
                     value={option}
                     onChange={({target}) => setOption(target.value)}
                 />
             </div>
             <button className="card-btn text-nowrap" onClick={handleAddOption}>
-                <HiMiniPlus className="text-lg"/> افزودن
+                <HiMiniPlus className="text-lg"/> {t('Add')}
             </button>
         </div>
     </div>

@@ -1,14 +1,16 @@
 import React from "react";
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell} from "recharts";
+import { useTranslation } from 'react-i18next';
 
 const CustomBerChart = ({data}) => {
+    const { t } = useTranslation();
     const getBarColor = (entry) => {
         switch (entry?.priority){
-            case "بالا":
+            case "High":
                 return "#FF0000";
-            case "معمولی":
+            case "Medium":
                 return "#FFA500";
-            case "کم":
+            case "Low":
                 return "#008000";
             default:
                 return "#000000";
@@ -23,7 +25,7 @@ const CustomBerChart = ({data}) => {
                         {payload[0].payload.priority}
                     </p>
                     <p className="text-sm text-gray-600">
-                        تعداد: {" "}
+                        {t("Count:")} {" "}
                         <span className="text-sm font-medium text-gray-900">
                             {payload[0].payload.count}
                         </span>

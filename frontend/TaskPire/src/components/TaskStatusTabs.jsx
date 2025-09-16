@@ -1,6 +1,8 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 
 const TaskStatusTabs = ({tabs, activeTab, setActiveTab}) => {
+    const { t } = useTranslation();
     return <div className="my-2">
       <div className="flex">
           {tabs.map((tab) => (
@@ -8,7 +10,7 @@ const TaskStatusTabs = ({tabs, activeTab, setActiveTab}) => {
                       className={`relative px-3 md:px-4 py-2 text-sm font-medium ${activeTab === tab.label ? 'text-primary' : 'text-gray-500 hover:text-gray-700'} cursor-pointer`}
                       onClick={() => setActiveTab(tab.label)}>
                   <div className="flex items-center">
-                      <span className="text-sm ml-2">{tab.label}</span>
+                      <span className="text-sm ml-2">{t(tab.label)}</span>
                       <span className={`text-xs ml-2 px-2 py-0.5 rounded-full ${activeTab === tab.label ? 'bg-primary text-white' : 'bg-gray-200/70 text-gray-600'}`}>
                           {tab.count}
                       </span>

@@ -5,9 +5,11 @@ import {API_PATHS} from "../../utils/apiPaths.js";
 import {LuFileSpreadsheet} from "react-icons/lu";
 import UserCard from "../../components/Cards/UserCard.jsx";
 import toast from "react-hot-toast";
+import { useTranslation } from 'react-i18next';
 
 const Users = () => {
     const [allUsers, setAllUsers] = useState([]);
+    const { t } = useTranslation();
     const handleDownloadReport = async () => {
         try {
             const response = await axiosInstance.get(API_PATHS.REPORTS.EXPORT_USERS, {
@@ -21,10 +23,10 @@ const Users = () => {
             link.click();
             link.parentNode.removeChild(link);
             window.URL.revokeObjectURL(url);
-            toast.success("گزارش با موفقیت دانلود شد");
+            toast.success(t("The Report was downloaded successfully."));
         }catch (error){
             console.error("Error downloading report:", error);
-            toast.error("مشکلی در دانلود گزارش رخ داده است");
+            toast.error("here was a problem downloading the report.");
         }
     };
     const getAllUsers = async () => {
@@ -46,10 +48,10 @@ const Users = () => {
     return <AdminLayout activeMenu="Users">
         <div className="mt-5 mb-10">
             <div className="flex md:flex-row md:items-center justify-between">
-                <h2 className="text-xl md:text-xl font-medium">مدیریت کاربران</h2>
+                <h2 className="text-xl md:text-xl font-medium">{t("Manage Users")}</h2>
                 <button className="flex md:flex download-btn" onClick={handleDownloadReport}>
                     <LuFileSpreadsheet className="text-lg"/>
-                    دانلود گزارش
+                    {t("Download Report")}
                 </button>
             </div>
 
