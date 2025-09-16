@@ -61,16 +61,16 @@ We welcome contributions to TaskPire! If you'd like to contribute, please fork t
   <tbody>
     <tr>
       <td>
-        <img src="../TaskPire/Screenshots/1.png" width="100%" alt="Admin Index">
+        <img src="./Screenshots/1.png" width="100%" alt="Admin Index">
       </td>
       <td>
-        <img src="../TaskPire/Screenshots/2.png" width="100%" alt="Tasks">
+        <img src="./Screenshots/2.png" width="100%" alt="Tasks">
       </td>
       <td>
-        <img src="../TaskPire/Screenshots/3.png" width="100%" alt="Create Tasks">
+        <img src="./Screenshots/3.png" width="100%" alt="Create Tasks">
       </td>
       <td>
-        <img src="../TaskPire/Screenshots/4.png" width="100%" alt="Users">
+        <img src="./Screenshots/4.png" width="100%" alt="Users">
       </td>
     </tr>
   </tbody>
