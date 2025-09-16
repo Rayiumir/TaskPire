@@ -32,10 +32,24 @@ then, Running the frontend server:
 ```bash
 cd frontend/TaskPire/
 npm install
+npm install vite --save-dev
 npm run build
 ```
 
 Open your browser and navigate to `http://localhost:5173` to see the app in action.
+
+# Connection Database
+
+To connect to the MongoDB database, you must complete the .env file with your database credentials.
+
+```
+MONGO_URI=mongodb://localhost:27017/MyProject
+JWT_SECRET=your_JWT_SECRET
+ADMIN_INVITE_TOKEN=4588944
+PORT=5000
+```
+
+To create admin access, just change from `user` to `admin` in the `users` section in the `Role` column of the database.
 
 ## Contributing
 
