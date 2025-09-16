@@ -6,19 +6,21 @@ import en from './locales/en.json';
 import fa from './locales/fa.json';
 
 i18n
-    .use(LanguageDetector) // برای تشخیص زبان مرورگر
+    .use(LanguageDetector)
     .use(initReactI18next)
     .init({
         resources: {
             en: { translation: en },
             fa: { translation: fa }
         },
-        lng: 'en', // زبان پیش‌فرض
+        lng: 'en',
         fallbackLng: 'en',
         interpolation: { escapeValue: false },
         react: {
             useSuspense: false,
         },
     });
+    
 document.body.dir = i18n.language === 'fa' ? 'rtl' : 'ltr';
+
 export default i18n;

@@ -11,7 +11,7 @@ const LanguageSwitcher = () => {
         localStorage.setItem('appLanguage', lng);
     };
 
-    // بارگذاری زبان ذخیره شده
+
     React.useEffect(() => {
         const savedLang = localStorage.getItem('appLanguage') || 'en';
         i18n.changeLanguage(savedLang);
