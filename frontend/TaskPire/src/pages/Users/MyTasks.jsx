@@ -7,18 +7,20 @@ import AdminLayout from "../../components/layouts/AdminLayout.jsx";
 import TaskStatusTabs from "../../components/TaskStatusTabs.jsx";
 import {LuFileSpreadsheet} from "react-icons/lu";
 import TaskCard from "../../components/Cards/TaskCard.jsx";
+import { useTranslation } from 'react-i18next';
 
 const myTask = () => {
     const [allTasks, setAllTasks] = useState([]);
     const [tabs, setTabs] = useState([]);
     const [filterStatus, setFilterStatus] = useState("All");
     const navigate  = useNavigate();
+    const { t } = useTranslation();
 
     const statusMapping = {
-        "همه": "All",
-        "در انتظار": "Pending",
-        "در پیشرفت": "In Progress",
-        "تکمیل شده": "Completed"
+        "All": "All",
+        "Pending": "Pending",
+        "In Progress": "In Progress",
+        "Completed": "Completed"
     };
 
     const getAllTasks = async () => {
@@ -36,10 +38,10 @@ const myTask = () => {
             const statusSummary = response.data?.statusSummary || [];
 
             const statusArray = [
-                {label: "همه", count: statusSummary.all || 0},
-                {label: "در انتظار", count: statusSummary.pendingTasks || 0},
-                {label: "در پیشرفت", count: statusSummary.inProgressTasks || 0},
-                {label: "تکمیل شده", count: statusSummary.completedTasks || 0},
+                {label: "All", count: statusSummary.all || 0},
+                {label: "Pending", count: statusSummary.pendingTasks || 0},
+                {label: "In Progress", count: statusSummary.inProgressTasks || 0},
+                {label: "Completed", count: statusSummary.completedTasks || 0},
             ];
 
             setTabs(statusArray);
@@ -61,7 +63,7 @@ const myTask = () => {
         <div className="my-5">
             <div className="flex flex-col md:flex-row md:items-center justify-between">
                 <div className="flex items-center justify-between gap-3">
-                    <h2 className="text-xl md:text-xl font-medium">وظایف من</h2>
+                    <h2 className="text-xl md:text-xl font-medium">{t("My Tasks")}</h2>
                 </div>
 
                 {tabs?.[0]?.count > 0 && (

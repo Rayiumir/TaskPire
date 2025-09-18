@@ -5,7 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4446b500-163b-4bce-bdc3-0e2472b1888b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screenshots/4.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/locales/fa.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/locales/fa.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Admin/AdminIndex.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Admin/AdminIndex.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Users/MyTasks.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Users/MyTasks.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Users/TaskDetails.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Users/TaskDetails.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Users/UserIndex.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/TaskPire/src/pages/Users/UserIndex.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +62,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
     &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/home/rayium/Program/WebStorm-252.23892.411/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -126,7 +136,11 @@
       <workItem from="1757976520385" duration="96000" />
       <workItem from="1757976617814" duration="4980000" />
       <workItem from="1758020965285" duration="8372000" />
-      <workItem from="1758042350787" duration="7050000" />
+      <workItem from="1758042350787" duration="7867000" />
+      <workItem from="1758207855268" duration="307000" />
+      <workItem from="1758208198239" duration="152000" />
+      <workItem from="1758208642969" duration="642000" />
+      <workItem from="1758228248434" duration="4719000" />
     </task>
     <servers />
   </component>

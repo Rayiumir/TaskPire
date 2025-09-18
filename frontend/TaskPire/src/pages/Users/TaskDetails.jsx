@@ -8,15 +8,17 @@ import moment from "moment";
 import AvatarGroup from "../../components/AvatarGroup.jsx";
 import TodoCheckList from "../../components/TodoCheckList.jsx";
 import AttachmentInputList from "../../components/Inputs/AttachmentInputList.jsx";
+import {useTranslation} from "react-i18next";
 
 const TaskDetails = () => {
     const {id} = useParams();
     const [task, setTask] = useState(null);
+    const { t } = useTranslation();
 
     const statusMap = {
-        "In Progress": "در حال انجام",
-        "Completed": "تکمیل شده",
-        "Pending": "در انتظار"
+        "In Progress": "In Progress",
+        "Completed": "Completed",
+        "Pending": "Pending"
     };
 
     const getStatusColor = (taskStatus) => {
@@ -130,22 +132,22 @@ const TaskDetails = () => {
                             <div className="form-card col-span-3">
                                 <div className="flex items-center justify-between">
                                     <h2 className="text-sm md:text-xl font-medium">{task?.title}</h2>
-                                    <div className={`text-[11px] md:text-[13px] font-medium ${getStatusColor(task?.status)} px-4 py-0.5 rounded`}>{statusMap[task?.status] || task?.status}</div>
+                                    <div className={`text-[11px] md:text-[13px] font-medium ${getStatusColor(task?.status)} px-4 py-0.5 rounded`}>{t(statusMap[task?.status] || task?.status)}</div>
                                 </div>
                                 <div className="mt-4">
-                                    <InfoBox label="توضیحات" value={task?.description} />
+                                    <InfoBox label={t("Description")} value={task?.description} />
                                 </div>
 
                                 <div className="grid grid-cols-12 gap-4 mt-4">
                                     <div className="col-span-6 md:col-span-4">
-                                        <InfoBox label="اولویت" value={task?.priority} />
+                                        <InfoBox label={t("Priority")} value={task?.priority} />
                                     </div>
                                     <div className="col-span-6 md:col-span-4">
-                                        <InfoBox label="تاریخ پایان" value={task?.dueDate ? moment(task?.dueDate).format("Do MM YYYY") : "N/A"} />
+                                        <InfoBox label={t("Date")} value={task?.dueDate ? moment(task?.dueDate).format("Do MM YYYY") : "N/A"} />
                                     </div>
                                     <div className="col-span-6 md:col-span-4">
                                         <div className="text-xs font-medium text-slate-500">
-                                            اختصاص به
+                                            {t("Assigned To")}
                                         </div>
                                         <AvatarGroup avatars={task?.assignedTo?.map((item) => item?.profileImageURL) || []} maxVisible={5}/>
                                     </div>
@@ -153,7 +155,7 @@ const TaskDetails = () => {
 
                                 <div className="mt-4">
                                     <label className="text-xs font-medium text-slate-500">
-                                        چک لیست کارها
+                                        {t("Todo Check List")}
                                     </label>
 
                                     {task?.todoChecklist?.map((item, index) => (
@@ -169,7 +171,7 @@ const TaskDetails = () => {
                                 {task?.attachments?.length > 0 && (
                                     <div className="mt-4">
                                         <label className="text-xs font-medium text-slate-500">
-                                            پیوست ها
+                                            {t("Add Links")}
                                         </label>
 
                                         {task?.attachments?.map((link, index) => (

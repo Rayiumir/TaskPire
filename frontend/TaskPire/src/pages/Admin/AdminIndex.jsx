@@ -93,14 +93,14 @@ const AdminIndex = () => {
     return <AdminLayout activeMenu="AdminIndex">
         <div className="card my-5">
             <div>
-                <h2 className="text-lg md:text-lg font-bold"> {t('Hello!')}{user?.name}</h2>
+                <h2 className="text-lg md:text-lg font-bold"> {t('Hello!')} {user?.name}</h2>
                 <p className="text-xs md:text-[13px] text-gray-400 mt-1.5">
                     {moment().format("dddd Do MMM YYYY")}
                 </p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 md:gap-6 mt-5">
                 <InfoCard
-                    label={t('Total Tasks')}
+                    label={t("Total Tasks")}
                     value={addThousandsSeparator(dashboardData?.charts?.taskDistribution?.All || 0)}
                     color="bg-primary"
                 />

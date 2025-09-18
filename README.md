@@ -57,22 +57,57 @@ We welcome contributions to TaskPire! If you'd like to contribute, please fork t
 
 # Screenshots
 
+### Admin
+
 <table class="table">
+<thead>
+    <tr>
+      <th scope="col" width="1000px">Admin Index</th>
+      <th scope="col" width="1000px">Create Task</th>
+      <th scope="col" width="1000px">Manage Tasks</th>
+      <th scope="col" width="1000px">Users</th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
       <td>
-        <img src="./Screenshots/1.png" width="100%" alt="Admin Index">
+        <img src="./Screenshots/Admin/1.png" width="100%" alt="Admin Index">
       </td>
       <td>
-        <img src="./Screenshots/2.png" width="100%" alt="Tasks">
+        <img src="./Screenshots/Admin/2.png" width="100%" alt="Tasks">
       </td>
       <td>
-        <img src="./Screenshots/3.png" width="100%" alt="Create Tasks">
+        <img src="./Screenshots/Admin/3.png" width="100%" alt="Create Tasks">
       </td>
       <td>
-        <img src="./Screenshots/4.png" width="100%" alt="Users">
+        <img src="./Screenshots/Admin/4.png" width="100%" alt="Users">
       </td>
     </tr>
   </tbody>
 </table>
+
+### User
+
 <table class="table">
+<thead>
+    <tr>
+      <th scope="col" width="1000px">User Index</th>
+      <th scope="col" width="1000px">My Tasks</th>
+      <th scope="col" width="1000px">Details Task</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <img src="./Screenshots/User/1.png" width="100%" alt="Admin Index">
+      </td>
+      <td>
+        <img src="./Screenshots/User/2.png" width="100%" alt="Tasks">
+      </td>
+      <td>
+        <img src="./Screenshots/User/3.png" width="100%" alt="Create Tasks">
+      </td>
+    </tr>
+  </tbody>
+</table>
+

@@ -12,6 +12,8 @@ import CustomPieChart from "../../components/Charts/CustomPieChart.jsx";
 import CustomBerChart from "../../components/Charts/CustomBerChart.jsx";
 import {LuArrowLeft} from "react-icons/lu";
 import TaskListTable from "../../components/TaskListTable.jsx";
+import { useTranslation } from 'react-i18next';
+
 const COLORS = [
     "#4f46e5",
     "#60a5fa",
@@ -22,6 +24,7 @@ const UserIndex = () => {
     useUserAuth();
     const {user} = useContext(UserContext);
     const navigate = useNavigate();
+    const { t, i18n } = useTranslation();
 
     const [dashboardData, setDashboardData] = useState(null);
     const [pieChartData, setPieChartData] = useState([]);
@@ -33,15 +36,15 @@ const UserIndex = () => {
 
         const taskDistributionData = [
             {
-                status: "در انتظار",
+                status: t("Pending"),
                 count: taskDistribution?.Pending || 0
             },
             {
-                status: "در پیشرفت",
+                status: t("In Progress"),
                 count: taskDistribution?.InProgress || 0
             },
             {
-                status: "تکمیل شده",
+                status: t("Completed"),
                 count: taskDistribution?.Completed || 0
             }
         ];
@@ -50,15 +53,15 @@ const UserIndex = () => {
 
         const PriorityLevelsData = [
             {
-                priority: "کم",
+                priority: t("Low"),
                 count: taskPriorityLevels?.Low || 0
             },
             {
-                priority: "معمولی",
+                priority: t("Medium"),
                 count: taskPriorityLevels?.Medium || 0
             },
             {
-                priority: "بالا",
+                priority: t("High"),
                 count: taskPriorityLevels?.High || 0
             },
         ];
@@ -93,32 +96,32 @@ const UserIndex = () => {
     return <AdminLayout activeMenu="UserIndex">
         <div className="card my-5">
             <div>
-                <h2 className="text-lg md:text-lg font-bold">سلام! {user?.name}</h2>
+                <h2 className="text-lg md:text-lg font-bold">{t("Hello!")} {user?.name}</h2>
                 <p className="text-xs md:text-[13px] text-gray-400 mt-1.5">
                     {moment().format("dddd Do MMM YYYY")}
                 </p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 md:gap-6 mt-5">
                 <InfoCard
-                    label="کل وظایف ها"
+                    label={t("Total Tasks")}
                     value={addThousandsSeparator(dashboardData?.charts?.taskDistribution?.All || 0)}
                     color="bg-primary"
                 />
 
                 <InfoCard
-                    label="در انتظار"
+                    label={t("Pending")}
                     value={addThousandsSeparator(dashboardData?.charts?.taskDistribution?.Pending || 0)}
                     color="bg-violet-500"
                 />
 
                 <InfoCard
-                    label="در حال انجام"
+                    label={t("In Progress")}
                     value={addThousandsSeparator(dashboardData?.charts?.taskDistribution?.InProgress || 0)}
                     color="bg-cyan-500"
                 />
 
                 <InfoCard
-                    label="تکمیل شده"
+                    label={t("Completed")}
                     value={addThousandsSeparator(dashboardData?.charts?.taskDistribution?.Completed || 0)}
                     color="bg-lime-500"
                 />
@@ -131,7 +134,7 @@ const UserIndex = () => {
                 <div className="card">
                     <div className="flex items-center justify-between">
                         <h2 className="font-medium">
-                            توزیع وظیفه
+                            {t('Task distribution')}
                         </h2>
                     </div>
                     <CustomPieChart
@@ -145,7 +148,7 @@ const UserIndex = () => {
                 <div className="card">
                     <div className="flex items-center justify-between">
                         <h2 className="font-medium">
-                            سطوح اولویت وظیفه
+                            {t('Task priority')}
                         </h2>
                     </div>
                     <CustomBerChart
@@ -158,10 +161,10 @@ const UserIndex = () => {
                 <div className="card">
                     <div className="flex items-center justify-between">
                         <h2 className="text-lg">
-                            وظایف اخیر
+                            {t('Recent tasks')}
                         </h2>
                         <button className="card-btn" onClick={onSeeMore}>
-                            <LuArrowLeft className="text-base" /> مشاهده همه
+                            <LuArrowLeft className="text-base" /> {t('view all')}
                         </button>
                     </div>
                     <TaskListTable tableData={dashboardData?.recentTasks || []}/>
