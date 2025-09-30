@@ -13,4 +13,6 @@ RUN npm run build
 # Serve the built application with a lightweight web server
 FROM nginx:alpine AS production
 
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 COPY --from=build /app/dist /usr/share/nginx/html
