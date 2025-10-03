@@ -51,6 +51,29 @@ PORT=5000
 
 To create admin access, just change from `user` to `admin` in the `users` section in the `Role` column of the database.
 
+## Run with Docker
+
+1. Clone the repository and enter its directory
+```bash
+git clone https://github.com/Rayiumir/TaskPire.git
+cd TaskPire
+```
+
+2. Create .env file from sample and set `JWT_SECRET`, `ADMIN_INVITE_TOKEN` and database credentials
+```bash
+cp .env.sample .env
+# edit .env to set secrets and DB connection
+```
+
+3. Build and run
+```bash
+docker compose up --build -d
+```
+
+4. Access the app
+- frontend: http://localhost:8080
+- backend: http://localhost:5000
+
 ## Contributing
 
 We welcome contributions to TaskPire! If you'd like to contribute, please fork the repository and submit a pull request.

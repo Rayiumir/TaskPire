@@ -1,0 +1,32 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    environment:
+      - MONGO_URI
+      - JWT_SECRET
+      - ADMIN_INVITE_TOKEN
+    ports:
+      - ${BACKEND_BIND_ADDRESS:-5000}:5000
+
+  frontend:
+    build:
+      context: ./frontend/TaskPire
+      args:
+        VITE_API_URL: ${API_URL}
+    restart: unless-stopped
+    ports:
+      - ${FRONTEND_BIND_ADDRESS:-8080}:80
+
+  mongo:
+    image: mongo:8.0
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+    volumes:
+      - mongo:/data/db
+
+volumes:
+  mongo:
